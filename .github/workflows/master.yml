@@ -1,0 +1,23 @@
+name: "Deploy to https://altjane.com"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo step
+        run: echo "::debug Master Build of git-ref ${GITHUB_REF##*/}"
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --project altjane --only hosting  --message \"${{ github.event.head_commit.message }}\"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
