@@ -8,6 +8,7 @@ body{
     margin-left: 30x;
     max-width: 800px;
     padding: 20x;
+    border: 4px cyan ;
 }
 
 h1{
