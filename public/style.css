@@ -15,7 +15,18 @@ h1{
     color:darkgoldenrod
 }
 
-.box{
-    background:cyan;
-    width: 300x;
+blockquote{
+  font-family: cursive;
+  border: 1px dotted #333333;
+  border-left: 5px solid #333333;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 0px;
+  color: #333333;
+  background-color: #F0F0F0;
+  padding: 10px;
+  margin-left: 0px; /* override the default left indent */
+  margin-right: 0px; /* override the default right indent */
+  font-style: italic;
 }
