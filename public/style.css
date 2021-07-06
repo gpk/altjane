@@ -19,10 +19,11 @@ blockquote{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   border: 5px;
   border-left: 5px solid goldenrod;
-  border-top-left-radius: 10px solid goldenrod;
-  border-top-right-radius: 30px solid goldenrod;
-  border-bottom-right-radius: 30px solid goldenrod;
-  border-bottom-left-radius: 10px solid goldenrod;
+  border-right: 5px solid goldenrod
+  border-top-left-radius: 10px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 10px;
   color:cornflowerblue;
   background-color:cyan;
   padding: 30px;
