@@ -15,6 +15,7 @@ h1{
     color:darkgoldenrod
 }
 
-h1.vip{
-    color:cyan;
+.box{
+    background:cyan;
+    width: 300x;
 }
