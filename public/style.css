@@ -14,8 +14,9 @@ body{
 h1{
     color:darkgoldenrod
 }
-blockquote{
-    border: 4px cyan;
-    margin-left: 30x;
-    padding: 20x;
-}
+div {
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+  }
