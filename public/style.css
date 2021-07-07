@@ -35,8 +35,8 @@ blockquote{
 blockquote{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   border: 5px;
-  border-left: 5px solid goldenrod;
-  border-right: 5px solid goldenrod;
+  border-left: 5px solid rgb(84,152,116);
+  border-right: 5px solid #c4dcec;
   border-top-left-radius: 10px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
