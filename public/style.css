@@ -51,14 +51,14 @@ blockquote {
 
 .rgb {
     border-left-color: rgb(84,152,116);
-    border-right-color: #c4dcec;
+    border-right-color: rgb(156,220,236);
     background-color: rgb(110,150,230);
-    color: #fcf1f5
+    color: rgb(252,241,245)
 }
 
 .hex {
-    border-left-color: rgb(84,152,116);
+    border-left-color: #549874;
     border-right-color: #c4dcec;
-    background-color: rgb(110,150,230);
+    background-color: #6e96e6;
     color: #fcf1f5
 }
