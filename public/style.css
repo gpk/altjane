@@ -31,3 +31,20 @@ blockquote{
   margin-right: 20px; 
   font-style: initial;
 }
+
+blockquote2 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border: 5px;
+  border-left: 5px solid goldenrod;
+  border-right: 5px solid goldenrod;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 5px;
+  color: #fcf1f5;
+  background-color: rgb(110,150,230);
+  padding: 30px;
+  margin-left: 20px; 
+  margin-right: 20px; 
+  font-style: initial;
+}
