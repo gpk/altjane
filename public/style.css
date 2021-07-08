@@ -71,3 +71,16 @@ figure{
   border-top: 1px solid aliceblue;
   border-bottom: 1px solid green;
 }
+
+aside{
+  float: right;
+  width: 46%;
+  margin: 10px;
+  border: 3px dotted aliceblue;
+  border-radius: 10px;
+  background-color: lightpink;
+  padding: 20px;
+  font-size: 18pt;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: olive;
+}
