@@ -62,3 +62,12 @@ blockquote {
     background-color: #6e96e6;
     color: #fcf1f5
 }
+
+figure{
+  text-align: center;
+  width: 60%;
+  margin: 10px auto;
+  padding: 5px;
+  border-top: 1px aliceblue;
+  border-bottom: 1px green;
+}
