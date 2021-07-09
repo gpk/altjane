@@ -65,7 +65,21 @@
   function convertBinaryToDecimal(binaryString) {
     return parseInt(binaryString, 2)
   }
+  console.log(convertBinaryToDecimal("110"))
+  console.log(convertBinaryToDecimal("10"))
+  console.log(convertBinaryToDecimal("101"))
 
+</script>
+<script>
+  // https://stackoverflow.com/a/9939785
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
+  function convertDecimalToBinary(decimalNumber) {
+    return (decimalNumber).toString(2)
+  }
+  console.log(convertDecimalToBinary(6))
+  console.log(convertDecimalToBinary(2))
+  console.log(convertDecimalToBinary(5))
+  
 </script>
 </body>
 </html>
