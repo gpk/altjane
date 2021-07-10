@@ -84,3 +84,15 @@ aside{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: olive;
 }
+
+#first{
+  background-color: white;
+}
+
+#second{
+  background-color:aquamarine;
+}
+
+#third{
+  background-color:coral;
+}

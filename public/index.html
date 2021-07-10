@@ -31,6 +31,11 @@
 <p><a href="https://www.google.com/search?q=neeko+sfspca&sxsrf=ALeKk03QNz18EWy2nHg9E_h4RievuFdIdw:1625398971520&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf6MKCq8nxAhUYhv0HHaH2A2sQ_AUoAXoECAEQAw&biw=657&bih=764#imgrc=YKY1JRt_XfQSCM">surprise</a></p>
 </aside>
 </article>
+
+<div id="first">first thing</div>
+<div id="second">second thing</div>
+<div id="third">third thing</div>
+
 <script>
   console.log("click away from this page or else you'll die")
   console.log("your last warning")
@@ -133,6 +138,16 @@
   myElement.innerHTML = "go away"
   myElement.innerHTML = "you're still here?? LEAVE !!!!!!!!!!!!!!!!!"
 </script>
+<script>
+  // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+  console.log(document.querySelector("figure"))
+  console.log(document.querySelector("#second"))
+  console.log(document.querySelector("#second").innerHTML)
+  let s = document.querySelector("#second")
+  console.log(s.innerHTML)
+  document.querySelector("#second").innerHTML = "secondthing + pen"
+</script>
+
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
 <input type = "text">
 </input>
