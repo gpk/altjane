@@ -149,15 +149,18 @@
 </script>
 <script>
   function changeColorAndContentOfOutputBox(){
-    let contentInputBox = document.querySelector("#dont-type-box")
     let outputDiv = document.querySelector("#output-box")
     let rBox = document.querySelector("#r-box")
     let gBox = document.querySelector("#g-box")
     let bBox = document.querySelector("#b-box")
-    outputDiv.innerHTML = contentInputBox.value
+    outputDiv.innerHTML = 
+      "#" + 
+      convertDecimalToHexadecimal(convertBinaryToDecimal(rBox.value)) +
+      "," +
+      convertDecimalToHexadecimal(convertBinaryToDecimal(gBox.value)) +
+      "," +
+      convertDecimalToHexadecimal(convertBinaryToDecimal(bBox.value))
 
-    console.log(rBox.value, gBox.value, bBox.value)
-    
     outputDiv.style.backgroundColor = 
       "rgb(" + 
       convertBinaryToDecimal(rBox.value) + 
@@ -171,7 +174,6 @@
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
 
 <div style="margin-top:10em">
-  <div>content: <input id="dont-type-box" type="text"></input></li></div>
   (24-bit color)
   <div>binary r: <input id="r-box" type="text"></input></div>
   <div>binary g: <input id="g-box" type="text"></input></div>
