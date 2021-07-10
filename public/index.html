@@ -9,7 +9,7 @@
 </head>
 <!--i am the best-->
 <body>
-<h1><em>Hello World!</em></h1>
+<h1><em><strong>Hello World!</strong></em></h1>
 <article>
 <p>Go away</p>
 <blockquote class="rgb">
@@ -118,7 +118,21 @@
   // TODO: explain document.onready later
   // document.write("<div> hello </div>")
 </script>
+<script>
+  // https://developer.mozilla.org/en-US/docs/Web/API/Document
+  // document = the whole web page, in javascript
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element
+  // element = html elements like b, body, in javascript
 
+  let myElement = document.createElement("div")
+  myElement.innerHTML = "hi"
+  myElement.style.backgroundColor = "red"
+  document.body.appendChild(myElement)
+  myElement.style.backgroundColor = "blue"
+  myElement.style.backgroundColor = "aliceblue"
+  myElement.innerHTML = "go away"
+  myElement.innerHTML = "you're still here?? LEAVE !!!!!!!!!!!!!!!!!"
+</script>
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
 <input type = "text">
 </input>
