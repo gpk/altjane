@@ -1,0 +1,48 @@
+1. The document object
+
+Sort of a magically available thing that represents your webpage in javascript.
+It’s a swiss army knife that allows you to mess with your page.
+
+Go to www.google.com
+
+document.
+
+...
+
+URL
+onmousemove ... assign it a function that prints a message
+writeln ... a div with some content to replace google.com
+
+
+Read about document on MDN, what seems familiar?
+
+
+2. Creating an html element using javascript
+
+Type each line in the console...
+
+let myElement = document.createElement("div")
+
+innerHTML ... make it "yo"
+style.backgroundColor .. make it "red"
+
+document.body.appendChild(myElement)
+
+style.backgroundColor .. make it "cyan"
+
+
+Read about element on MDN, what seems familiar?
+
+
+3. document.querySelector
+
+Read about it on MDN
+
+select the first blockquote on your page and print its text content to the console
+  (.textContent)
+
+select an element by id and print its content to the console
+
+css selectors!
+cheatsheet pdf
+https://appletree.or.kr/quick_reference_cards/CSS/CSS%20selectors%20cheatsheet.pdf
