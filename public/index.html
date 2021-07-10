@@ -50,6 +50,9 @@
   }
   console.log(composeADumbMessage())
   console.log(composeADumbMessage())
+  function printADumbMessage() {
+    console.log(composeADumbMessage())
+  }
 </script>
 <script>
   function add(x,y) {
@@ -107,7 +110,8 @@
   console.log(convertHexadecimalToDecimal("C"))
   console.log(convertHexadecimalToDecimal("1F"))
 </script>
-<button>
+
+<button onclick="printADumbMessage()">
   don't click me
 </button>
 </body>
