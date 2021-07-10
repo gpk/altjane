@@ -149,7 +149,9 @@
 </script>
 <script>
   function printDontTypeBox(){
-    console.log(document.querySelector("#dont-type-box").value)
+    let inputBox = document.querySelector("#dont-type-box")
+    let outputDiv = document.querySelector("#output-box")
+    outputDiv.innerHTML = inputBox.value
   }
 </script>
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
@@ -158,5 +160,8 @@
 <button onclick="printDontTypeBox()">
   don't click me
 </button>
+<div id="output-box">
+  change me
+</div>
 </body>
 </html>
