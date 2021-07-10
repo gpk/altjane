@@ -68,6 +68,8 @@
   console.log(convertBinaryToDecimal("110"))
   console.log(convertBinaryToDecimal("10"))
   console.log(convertBinaryToDecimal("101"))
+  console.log(convertBinaryToDecimal("1100"))
+  console.log(convertBinaryToDecimal("11111"))
 
 </script>
 <script>
@@ -79,7 +81,21 @@
   console.log(convertDecimalToBinary(6))
   console.log(convertDecimalToBinary(2))
   console.log(convertDecimalToBinary(5))
+  console.log(convertDecimalToBinary(12))
+  console.log(convertDecimalToBinary(31))
   
+</script>
+<script>
+  // https://stackoverflow.com/a/57805
+
+  function convertDecimalToHexadecimal(decimalNumber) {
+    return decimalNumber.toString(16)
+  }
+  console.log(convertDecimalToHexadecimal(6))
+  console.log(convertDecimalToHexadecimal(2))
+  console.log(convertDecimalToHexadecimal(5))
+  console.log(convertDecimalToHexadecimal(12))
+  console.log(convertDecimalToHexadecimal(31))
 </script>
 </body>
 </html>
