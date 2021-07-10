@@ -96,3 +96,7 @@ aside{
 #third{
   background-color:coral;
 }
+
+#output-box {
+  border: 2px dotted palevioletred;
+}
