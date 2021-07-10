@@ -148,18 +148,22 @@
   document.querySelector("#second").innerHTML = "secondthing + pen"
 </script>
 <script>
-  function printDontTypeBox(){
-    let inputBox = document.querySelector("#dont-type-box")
+  function changeColorAndContentOfOutputBox(){
+    let contentInputBox = document.querySelector("#dont-type-box")
     let outputDiv = document.querySelector("#output-box")
-    outputDiv.innerHTML = inputBox.value
+    let colorInputBox = document.querySelector("#color-box")
+    outputDiv.innerHTML = contentInputBox.value
+    outputDiv.style.backgroundColor = colorInputBox.value
   }
 </script>
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
 
 <div style="margin-top:10em">
   <div>content: <input id="dont-type-box" type="text"></input></li></div>
+  <div>color: <input id="color-box" type="text"></input></div>
   
-  <button onclick="printDontTypeBox()">
+  
+  <button onclick="changeColorAndContentOfOutputBox()">
     don't click me
   </button>
   <div id="output-box">
