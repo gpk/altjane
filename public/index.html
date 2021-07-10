@@ -151,16 +151,31 @@
   function changeColorAndContentOfOutputBox(){
     let contentInputBox = document.querySelector("#dont-type-box")
     let outputDiv = document.querySelector("#output-box")
-    let colorInputBox = document.querySelector("#color-box")
+    let rBox = document.querySelector("#r-box")
+    let gBox = document.querySelector("#g-box")
+    let bBox = document.querySelector("#b-box")
     outputDiv.innerHTML = contentInputBox.value
-    outputDiv.style.backgroundColor = colorInputBox.value
+
+    console.log(rBox.value, gBox.value, bBox.value)
+    
+    outputDiv.style.backgroundColor = 
+      "rgb(" + 
+      convertBinaryToDecimal(rBox.value) + 
+      "," + 
+      convertBinaryToDecimal(gBox.value) + 
+      "," + 
+      convertBinaryToDecimal(bBox.value) + 
+      ")"
   }
 </script>
 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input -->
 
 <div style="margin-top:10em">
   <div>content: <input id="dont-type-box" type="text"></input></li></div>
-  <div>color: <input id="color-box" type="text"></input></div>
+  (24-bit color)
+  <div>binary r: <input id="r-box" type="text"></input></div>
+  <div>binary g: <input id="g-box" type="text"></input></div>
+  <div>binary b: <input id="b-box" type="text"></input></div>
   
   
   <button onclick="changeColorAndContentOfOutputBox()">
