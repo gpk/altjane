@@ -35,15 +35,12 @@
 
         function appendSquares(el, str) {
             for (const c of str) {
-                console.log(c)
                 el.appendChild(charToElement(c))
             }
         }
 
         function appendRows(el, rowsOfStrings) {
             for (const rowStr of rowsOfStrings) {
-                console.log(rowStr)
-                console.log(rowsOfStrings)
                 const rowEl = document.createElement("div")
                 appendSquares(rowEl, rowStr)
                 el.appendChild(rowEl)
@@ -51,9 +48,7 @@
         }
 
         function main() {
-            console.log("hi1")
             const el = document.querySelector("#qr")
-            console.log("hi2")
 
             appendRows(el, [
                 "_____________________________________",
@@ -96,7 +91,6 @@
             ])
         }
 
-        console.log("foo")
         document.addEventListener("DOMContentLoaded", main)
     </script>
 </html>
