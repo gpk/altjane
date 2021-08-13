@@ -28,7 +28,7 @@
 </figure>
 <aside>
 <p><del>You're awesome</del>. <ins>You're trash</ins>.</p>
-<p><a href="https://www.google.com/search?q=neeko+sfspca&sxsrf=ALeKk03QNz18EWy2nHg9E_h4RievuFdIdw:1625398971520&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf6MKCq8nxAhUYhv0HHaH2A2sQ_AUoAXoECAEQAw&biw=657&bih=764#imgrc=YKY1JRt_XfQSCM">surprise</a></p>
+<p><a href="https://www.google.com/search?q=neeko+snowshoe&tbm=isch&ved=2ahUKEwjgvIrD1q3yAhUS_6QKHb_HCFkQ2-cCegQIABAA&oq=neeko+snowshoe&gs_lcp=CgNpbWcQAzIECCMQJ1D9M1j9M2DsNmgAcAB4AIABUogBUpIBATGYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=HzoWYaCxHJL-kwW_j6PIBQ&bih=896&biw=1504#imgrc=7vo8-sbI3AzJxM">surprise</a></p>
 </aside>
 </article>
 
@@ -187,6 +187,35 @@
     change me
   </div>
 </div>
+
+<script>
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
+  console.log("c".charCodeAt(0))
+  console.log("u".charCodeAt(0))
+  console.log(String.fromCharCode(99,117))
+</script>
+
+
+<div style="margin-top:1em">
+  <div>ascii character: <input id="ascii-box" type="text"></input></div>
+  
+  <button onclick="foo()">
+    don't click me
+  </button>
+  <div id="output-box2">
+    hexadecimal
+  </div>
+</div>
+<script>
+  function foo(){
+    let outputDiv = document.querySelector("#output-box2")
+    let asciiBox = document.querySelector("#ascii-box")
+    outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
+  }
+</script>
 
 </body>
 </html>
