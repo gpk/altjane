@@ -213,10 +213,7 @@
   function foo(){
     let outputDiv = document.querySelector("#output-box2")
     let asciiBox = document.querySelector("#ascii-box")
-    outputDiv.innerHTML = asciiBox.value
-    
-     
-    
+    outputDiv.innerHTML = asciiBox.value.charCodeAt(0)
   }
 </script>
 
