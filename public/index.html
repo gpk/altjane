@@ -198,5 +198,27 @@
   console.log(String.fromCharCode(99,117))
 </script>
 
+
+<div style="margin-top:1em">
+  <div>ascii character: <input id="ascii-box" type="text"></input></div>
+  
+  <button onclick="foo()">
+    don't click me
+  </button>
+  <div id="output-box2">
+    change me
+  </div>
+</div>
+<script>
+  function foo(){
+    let outputDiv = document.querySelector("#output-box2")
+    let asciiBox = document.querySelector("#ascii-box")
+    outputDiv.innerHTML = asciiBox.value
+    
+     
+    
+  }
+</script>
+
 </body>
 </html>
