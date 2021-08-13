@@ -206,14 +206,14 @@
     don't click me
   </button>
   <div id="output-box2">
-    change me
+    hexadecimal
   </div>
 </div>
 <script>
   function foo(){
     let outputDiv = document.querySelector("#output-box2")
     let asciiBox = document.querySelector("#ascii-box")
-    outputDiv.innerHTML = asciiBox.value.charCodeAt(0)
+    outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
   }
 </script>
 
