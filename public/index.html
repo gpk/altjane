@@ -226,10 +226,12 @@
   </div>
 </div>
 <script>
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
   function foo(){
     let outputDiv = document.querySelector("#output-box2")
     let asciiBox = document.querySelector("#ascii-box")
     outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
+    console.log(Array.from(asciiBox.value));
   }
 </script>
 </body>
