@@ -78,7 +78,7 @@
       img.onload = function() {
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
-        let myImageData = ctx.getImageData(210, 210, 10, 10)
+        let myImageData = ctx.getImageData(0, 0, 420, 420)
         console.log(myImageData)
 
         // What happens is you get a ImageData object with a data attribute that 
