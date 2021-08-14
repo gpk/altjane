@@ -218,9 +218,17 @@
 </script>
 <canvas id="tutorial" width="150" height="150"></canvas>
 <script>
+  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function draw() {
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
+
+      var img = new Image();   // Create new img element
+      img.addEventListener('load', function() {
+        // execute drawImage statements here
+        console.log("finishLoading")
+      }, false);
+      img.src = 'neeko.jpeg'; // Set source path
 
       ctx.fillStyle = 'rgb(200, 0, 0)'
       ctx.fillRect(10, 10, 50, 50);
