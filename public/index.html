@@ -232,11 +232,12 @@
   function foo(){
     let outputDiv = document.querySelector("#output-box2")
     let asciiBox = document.querySelector("#ascii-box")
-    outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
     let chars = Array.from(asciiBox.value)
+    let outputStr = ""
     chars.forEach(function(foo) {
-      console.log("foo is: " + foo, foo.length, foo.charCodeAt(0), foo.charCodeAt(0), convertDecimalToHexadecimal(foo.charCodeAt(0)))
+      outputStr = outputStr + " " + convertDecimalToHexadecimal(foo.charCodeAt(0))
     })
+    outputDiv.innerHTML = outputStr
   }
 </script>
 </body>
