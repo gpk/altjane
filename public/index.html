@@ -78,6 +78,13 @@
       img.onload = function() {
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
+        let myImageData = ctx.getImageData(210, 210, 10, 10)
+        console.log(myImageData)
+
+        // What happens is you get a ImageData object with a data attribute that 
+        // contains a big array. For every pixel, there are four entries in the array, 
+        // r, g, b, and alpha. So the array looks something like [pixel1R, pixel1G, pixel1B, 
+        // pixel1Alpha, ..., pixelNR, pixelNG, pixelNB, pixelNAlpha].
       }
       img.src = 'neeko.jpeg'; // Set source path
     }
