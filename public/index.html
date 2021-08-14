@@ -67,6 +67,28 @@
   console.log(add(456,654))
   console.log(add(123,321))
 </script>
+<canvas id="tutorial" width="420" height="420"></canvas>
+<script>
+  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
+  function draw() {
+      let canvas = document.querySelector("#tutorial")
+      let ctx = canvas.getContext('2d')
+
+      var img = new Image();   // Create new img element
+      img.onload = function() {
+        console.log("finishLoading")
+        ctx.drawImage(img, 0, 0)
+      }
+      img.src = 'neeko.jpeg'; // Set source path
+
+      ctx.fillStyle = 'rgb(200, 0, 0)'
+      ctx.fillRect(10, 10, 50, 50)
+
+      ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
+      ctx.fillRect(30, 30, 50, 50)
+    }
+    draw()
+</script>
 <script>
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
   // https://stackoverflow.com/a/10258846
@@ -215,28 +237,6 @@
     let asciiBox = document.querySelector("#ascii-box")
     outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
   }
-</script>
-<canvas id="tutorial" width="420" height="420"></canvas>
-<script>
-  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-  function draw() {
-      let canvas = document.querySelector("#tutorial")
-      let ctx = canvas.getContext('2d')
-
-      var img = new Image();   // Create new img element
-      img.onload = function() {
-        console.log("finishLoading")
-        ctx.drawImage(img, 0, 0)
-      }
-      img.src = 'neeko.jpeg'; // Set source path
-
-      ctx.fillStyle = 'rgb(200, 0, 0)'
-      ctx.fillRect(10, 10, 50, 50)
-
-      ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
-      ctx.fillRect(30, 30, 50, 50)
-    }
-    draw()
 </script>
 </body>
 </html>
