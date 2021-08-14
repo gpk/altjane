@@ -209,8 +209,10 @@
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
-  console.log("c".charCodeAt(0))
-  console.log("u".charCodeAt(0))
+  console.log("c", "c".charCodeAt(0))
+  let baz = "q"
+  console.log(baz, baz.charCodeAt(0))
+  console.log("u", "u".charCodeAt(0))
   console.log(String.fromCharCode(99,117))
 </script>
 
@@ -231,7 +233,10 @@
     let outputDiv = document.querySelector("#output-box2")
     let asciiBox = document.querySelector("#ascii-box")
     outputDiv.innerHTML = convertDecimalToHexadecimal(asciiBox.value.charCodeAt(0))
-    console.log(Array.from(asciiBox.value));
+    let chars = Array.from(asciiBox.value)
+    chars.forEach(function(foo) {
+      console.log("foo is: " + foo, foo.length, foo.charCodeAt(0), foo.charCodeAt(0), convertDecimalToHexadecimal(foo.charCodeAt(0)))
+    })
   }
 </script>
 </body>
