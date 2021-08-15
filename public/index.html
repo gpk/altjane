@@ -75,6 +75,14 @@
     })
   }
 
+  function transparentMaker(rgbaArray) {
+    rgbaArray.forEach(function(e, i) {
+      if (i % 4 == 3) {
+        rgbaArray[i] = 128
+      }
+    })
+  }
+
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function draw() {
@@ -90,7 +98,7 @@
         
         console.log(d)
 
-        whiteMaker(d)
+        transparentMaker(d)
         
         ctx.putImageData(myImageData, 0, 0)
 
