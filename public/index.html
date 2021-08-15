@@ -95,17 +95,7 @@
     })
   }
 
-  function darkMaker(rgbaArray, lightFactor) {
-    rgbaArray.forEach(function(e, i) {
-      if (i % 4 == 0) {
-        rgbaArray[i] = e - lightFactor
-      } else if (i % 4 == 1) {
-        rgbaArray[i] = e - lightFactor
-      } else if (i % 4 == 2) {
-        rgbaArray[i] = e - lightFactor
-      }
-    })
-  }
+  
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function draw() {
@@ -121,7 +111,7 @@
         
         console.log(d)
 
-        darkMaker(d, 100)
+        lightMaker(d, -100)
         
         ctx.putImageData(myImageData, 0, 0)
 
