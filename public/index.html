@@ -72,8 +72,16 @@
 <div>green shifter: <input type="range" min="-255" max="255" id="greenshifter-box" value="0" onchange="draw()"></input></div>
 <div>blue shifter: <input type="range" min="-255" max="255" id="blueshifter-box" value="0" onchange="draw()"></input></div>
 <div>transparency shifter: <input type="range" min="0" max="255" id="transparencyshifter-box" value="0" onchange="draw()"></input></div>
+<div>stats: <div id="image-stats"></div></div>
 <script>
-  
+
+  function timeOps(count, statsElement, workFn) {
+    const startMs = new Date().getTime()
+    workFn()
+    const totalMs = new Date().getTime() - startMs
+    statsElement.innerHTML = "" + count + " operations in " + totalMs + "ms = " + Math.round(parseInt((count*1.0)/totalMs * 1000.0)/1000000) + " million operations per second"
+  }
+
   function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
     rgbaArray.forEach(function(e, i) {
       if (i % 4 == 0) {
@@ -128,11 +136,12 @@
         let myImageData = ctx.getImageData(0, 0, 420, 420)
         let d = myImageData.data
         
-        console.log(d)
-
-        colorShifter(d, redFactor, greenFactor, blueFactor, transparencyFactor)
-        
-        ctx.putImageData(myImageData, 0, 0)
+        let statsElement = document.querySelector("#image-stats")
+        timeOps(d.length, statsElement, function() {
+          colorShifter(d, redFactor, greenFactor, blueFactor, transparencyFactor)
+          
+          ctx.putImageData(myImageData, 0, 0)
+        })
 
         console.log(d)
 
