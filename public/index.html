@@ -83,26 +83,14 @@
     })
   }
 
-  function lightMaker(rgbaArray, lightFactor) {
+  function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor) {
     rgbaArray.forEach(function(e, i) {
       if (i % 4 == 0) {
-        rgbaArray[i] = e + lightFactor
+        rgbaArray[i] = e + redFactor
       } else if (i % 4 == 1) {
-        rgbaArray[i] = e + lightFactor
+        rgbaArray[i] = e + greenFactor
       } else if (i % 4 == 2) {
-        rgbaArray[i] = e + lightFactor
-      }
-    })
-  }
-
-  function redMaker(rgbaArray, lightFactor) {
-    rgbaArray.forEach(function(e, i) {
-      if (i % 4 == 0) {
-        rgbaArray[i] = e + lightFactor
-      } else if (i % 4 == 1) {
-        rgbaArray[i] = e - lightFactor
-      } else if (i % 4 == 2) {
-        rgbaArray[i] = e - lightFactor
+        rgbaArray[i] = e + blueFactor
       }
     })
   }
@@ -121,7 +109,7 @@
         
         console.log(d)
 
-        redMaker(d, 100)
+        colorShifter(d, 100, 0, 0)
         
         ctx.putImageData(myImageData, 0, 0)
 
