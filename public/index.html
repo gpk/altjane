@@ -69,21 +69,8 @@
 </script>
 <canvas id="tutorial" width="420" height="420"></canvas>
 <script>
-  function whiteMaker(rgbaArray) {
-    rgbaArray.forEach(function(e, i) {
-      rgbaArray[i] = 255
-    })
-  }
-
-  function transparentMaker(rgbaArray) {
-    rgbaArray.forEach(function(e, i) {
-      if (i % 4 == 3) {
-        rgbaArray[i] = 128
-      }
-    })
-  }
-
-  function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor) {
+  
+  function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
     rgbaArray.forEach(function(e, i) {
       if (i % 4 == 0) {
         rgbaArray[i] = e + redFactor
@@ -91,6 +78,8 @@
         rgbaArray[i] = e + greenFactor
       } else if (i % 4 == 2) {
         rgbaArray[i] = e + blueFactor
+      } else if (i % 4 == 3) {
+        rgbaArray[i] = e - transparentFactor
       }
     })
   }
@@ -109,7 +98,7 @@
         
         console.log(d)
 
-        colorShifter(d, 100, 0, 0)
+        colorShifter(d, 0, 0, 100, 150)
         
         ctx.putImageData(myImageData, 0, 0)
 
