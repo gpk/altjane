@@ -68,10 +68,10 @@
   console.log(add(123,321))
 </script>
 <canvas id="tutorial" width="420" height="420"></canvas>
-<div>red shifter: <input id="redshifter-box" type="text"></input></div>
-<div>green shifter: <input id="greenshifter-box" type="text"></input></div>
-<div>blue shifter: <input id="blueshifter-box" type="text"></input></div>
-<div>transparency shifter: <input id="transparencyshifter-box" type="text"></input></div>
+<div>red shifter: <input type="range" min="-255" max="255" id="redshifter-box" value="0"></input></div>
+<div>green shifter: <input type="range" min="-255" max="255" id="greenshifter-box" value="0"></input></div>
+<div>blue shifter: <input type="range" min="-255" max="255" id="blueshifter-box" value="0"></input></div>
+<div>transparency shifter: <input type="range" min="0" max="255" id="transparencyshifter-box" value="0"></input></div>
 <button onclick="draw()">
  don't click me
 </button>
