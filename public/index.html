@@ -93,6 +93,34 @@
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function draw() {
+      let redShifterBox = document.querySelector("#redshifter-box")
+      let greenShifterBox = document.querySelector("#greenshifter-box")
+      let blueShifterBox = document.querySelector("#blueshifter-box")
+      let transparencyShifterBox = document.querySelector("#transparencyshifter-box")
+    
+      let redFactor = parseInt(redShifterBox.value)
+      let greenFactor = parseInt(greenShifterBox.value)
+      let blueFactor = parseInt(blueShifterBox.value)
+      let transparencyFactor = parseInt(transparencyShifterBox.value)
+
+      if (Number.isNaN(redFactor)) {
+        redFactor = 0
+      }
+
+      if (Number.isNaN(greenFactor)) {
+        greenFactor = 0
+      }
+
+      if (Number.isNaN(blueFactor)) {
+        blueFactor = 0
+      }
+
+      if (Number.isNaN(transparencyFactor)) {
+        transparencyFactor = 0
+      }
+
+      console.log("x", redFactor, greenFactor, blueFactor, transparencyFactor)
+
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
 
@@ -105,7 +133,7 @@
         
         console.log(d)
 
-        colorShifter(d, 0, 0, 100, 150)
+        colorShifter(d, redFactor, greenFactor, blueFactor, transparencyFactor)
         
         ctx.putImageData(myImageData, 0, 0)
 
