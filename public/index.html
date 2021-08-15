@@ -79,7 +79,19 @@
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
         let myImageData = ctx.getImageData(0, 0, 420, 420)
-        console.log(myImageData)
+        let d = myImageData.data
+        
+        console.log(d)
+
+        d[0] = 255
+        d[1] = 255
+        d[2] = 255
+        d[3] = 255        
+        console.log(d)
+
+
+        
+        //
 
         // What happens is you get a ImageData object with a data attribute that 
         // contains a big array. For every pixel, there are four entries in the array, 
