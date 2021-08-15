@@ -69,6 +69,13 @@
 </script>
 <canvas id="tutorial" width="420" height="420"></canvas>
 <script>
+  function whiteMaker(rgbaArray) {
+    rgbaArray.forEach(function(e, i) {
+      rgbaArray[i] = 255
+    })
+  }
+
+
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function draw() {
       let canvas = document.querySelector("#tutorial")
@@ -83,11 +90,9 @@
         
         console.log(d)
 
-        d.forEach(function(e, i) {
-          d[i] = 255
-        })
+        whiteMaker(d)
         
-        ctx.putImageData(myImageData, 0, 0);
+        ctx.putImageData(myImageData, 0, 0)
 
         console.log(d)
 
