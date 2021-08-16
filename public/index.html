@@ -75,16 +75,37 @@
 <script>
   
   function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
-    rgbaArray.forEach(function(e, i) {
-      if (i % 4 == 0) {
-        rgbaArray[i] = e + redFactor
-      } else if (i % 4 == 1) {
-        rgbaArray[i] = e + greenFactor
-      } else if (i % 4 == 2) {
-        rgbaArray[i] = e + blueFactor
-      } else if (i % 4 == 3) {
-        rgbaArray[i] = e - transparentFactor
+    rgbaArray.forEach(function(value, index) {
+      if (index % 4 == 0) {
+        rgbaArray[index] = value + redFactor
+      } else if (index % 4 == 1) {
+        rgbaArray[index] = value + greenFactor
+      } else if (index % 4 == 2) {
+        rgbaArray[index] = value + blueFactor
+      } else if (index % 4 == 3) {
+        rgbaArray[index] = value - transparentFactor
       }
+
+      if (index < 1000) {
+        console.log(
+          "index=", index, 
+          "value=", value, 
+          "redFactor=", redFactor, 
+          "greenFactor=", greenFactor, 
+          "blueFactor=", blueFactor, 
+          "transparentFactor=", transparentFactor)
+      }
+
+      if (index % 4 == 3) {
+        let r = rgbaArray[index - 3]
+        let g = rgbaArray[index - 2]
+        let b = rgbaArray[index - 1]
+
+        if (b > g && b > r) {
+          rgbaArray[index] = 0
+        }
+      }
+
     })
   }
 
