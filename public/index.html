@@ -150,7 +150,9 @@
       }
   }
 
-  function changePixels(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
+  function changePixels(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor, 
+                        redFilterSelected, greenFilterSelected, blueFilterSelected) {
+    console.log("changePixels begin", redFactor, greenFactor, blueFactor, transparentFactor)
     rgbaArray.forEach(function(value, index) {
       if (index % 4 == 0) {
         rgbaArray[index] = value + redFactor
@@ -161,13 +163,18 @@
       } else if (index % 4 == 3) {
         rgbaArray[index] = value - transparentFactor
       }
-
-      makePixelTransparentIfRed(rgbaArray, index)
-
-      makePixelTransparentIfGreen(rgbaArray, index)
-
-      makePixelTransparentIfBlue(rgbaArray, index)
+      
+      if (redFilterSelected) {
+        makePixelTransparentIfRed(rgbaArray, index)
+      }
+      if (greenFilterSelected) {
+        makePixelTransparentIfGreen(rgbaArray, index)
+      }
+      if (blueFilterSelected) {
+        makePixelTransparentIfBlue(rgbaArray, index)
+      }
     })
+    console.log("changePixels end")
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
@@ -198,7 +205,6 @@
         transparencyFactor = 0
       }
 
-
       let redFilterSelected = document.querySelector("#redfilter-checkbox").checked
       let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
       let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
@@ -215,7 +221,10 @@
         
         let statsElement = document.querySelector("#image-stats")
         timeOps(d.length, statsElement, function() {
-          changePixels(d, redFactor, greenFactor, blueFactor, transparencyFactor)
+          console.log("before changePixels", redFactor, greenFactor, blueFactor, transparencyFactor)
+          changePixels(d, redFactor, greenFactor, blueFactor, transparencyFactor, 
+                       redFilterSelected, greenFilterSelected, blueFilterSelected)
+          console.log("after changePixels")
           
           ctx.putImageData(myImageData, 0, 0)
         })
