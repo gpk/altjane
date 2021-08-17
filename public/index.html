@@ -68,10 +68,33 @@
   console.log(add(123,321))
 </script>
 <canvas id="tutorial" width="420" height="420"></canvas>
-<div>red shifter: <input type="range" min="-255" max="255" id="redshifter-box" value="0" onchange="draw()"></input></div>
-<div>green shifter: <input type="range" min="-255" max="255" id="greenshifter-box" value="0" onchange="draw()"></input></div>
-<div>blue shifter: <input type="range" min="-255" max="255" id="blueshifter-box" value="0" onchange="draw()"></input></div>
-<div>transparency shifter: <input type="range" min="0" max="255" id="transparencyshifter-box" value="0" onchange="draw()"></input></div>
+
+<table>
+  <tr>
+    <td style="text-align: right">
+      <div>red shifter</div>
+      <div>green shifter</div>
+      <div>blue shifter</div>
+      <div>transparency shifter</div>      
+    </td>
+    <td>
+      <div><input type="range" min="-255" max="255" id="redshifter-box" value="0" onchange="draw()"></input></div>
+      <div><input type="range" min="-255" max="255" id="greenshifter-box" value="0" onchange="draw()"></input></div>
+      <div><input type="range" min="-255" max="255" id="blueshifter-box" value="0" onchange="draw()"></input></div>
+      <div><input type="range" min="0" max="255" id="transparencyshifter-box" value="0" onchange="draw()"></input></div>
+    </td>
+    <td style="text-align: right">
+      <div>red filter</div>
+      <div>green filter</div>
+      <div>blue filter</div>
+    </td>
+    <td>
+      <div><input type="checkbox" id="redfilter-checkbox" onchange="draw()"></input></div>
+      <div><input type="checkbox" id="greenfilter-checkbox" onchange="draw()"></input></div>
+      <div><input type="checkbox" id="bluefilter-checkbox" onchange="draw()"></input></div>
+    </td>
+  </tr>
+</table>
 <div>stats: <span id="image-stats"></span></div>
 <script>
 
@@ -127,7 +150,7 @@
       }
   }
 
-  function colorShifter(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
+  function changePixels(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor) {
     rgbaArray.forEach(function(value, index) {
       if (index % 4 == 0) {
         rgbaArray[index] = value + redFactor
@@ -139,24 +162,11 @@
         rgbaArray[index] = value - transparentFactor
       }
 
-      if (index < 1000) {
-        console.log(
-          "index=", index, 
-          "value=", value, 
-          "redFactor=", redFactor, 
-          "greenFactor=", greenFactor, 
-          "blueFactor=", blueFactor, 
-          "transparentFactor=", transparentFactor)
-      }
-
-
       makePixelTransparentIfRed(rgbaArray, index)
 
       makePixelTransparentIfGreen(rgbaArray, index)
 
       makePixelTransparentIfBlue(rgbaArray, index)
-
- 
     })
   }
 
@@ -188,7 +198,10 @@
         transparencyFactor = 0
       }
 
-      console.log("x", redFactor, greenFactor, blueFactor, transparencyFactor)
+
+      let redFilterSelected = document.querySelector("#redfilter-checkbox").checked
+      let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
+      let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
 
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
@@ -202,7 +215,7 @@
         
         let statsElement = document.querySelector("#image-stats")
         timeOps(d.length, statsElement, function() {
-          colorShifter(d, redFactor, greenFactor, blueFactor, transparencyFactor)
+          changePixels(d, redFactor, greenFactor, blueFactor, transparencyFactor)
           
           ctx.putImageData(myImageData, 0, 0)
         })
