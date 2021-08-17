@@ -104,12 +104,15 @@
           "transparentFactor=", transparentFactor)
       }
 
+      // if we're at a transparency number
       if (index % 4 == 3) {
-        let r = rgbaArray[index - 3]
-        let g = rgbaArray[index - 2]
-        let b = rgbaArray[index - 1]
+        let r = rgbaArray[index - 3] // the red value is 3 elements back
+        let g = rgbaArray[index - 2] // the green value is 2 elements back
+        let b = rgbaArray[index - 1] // the blue value is 1 element back
 
+        // if blue is greater than green and red...
         if (b > g && b > r) {
+          // ... then make the transparency value 0.
           rgbaArray[index] = 0
         }
       }
