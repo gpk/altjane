@@ -82,6 +82,36 @@
     statsElement.innerHTML = "" + count + " operations in " + totalMs + "ms = " + Math.round(parseInt((count*1.0)/totalMs * 1000.0)/1000000) + " million operations per second"
   }
 
+  function makePixelTransparentIfRed(rgbaArray, index) {
+    // if we're at a transparency number
+    if (index % 4 == 3) {
+        let r = rgbaArray[index - 3] // the red value is 3 elements back
+        let g = rgbaArray[index - 2] // the green value is 2 elements back
+        let b = rgbaArray[index - 1] // the blue value is 1 element back
+
+        // if red is greater than green and blue...
+        if (r > g && r > b) {
+          // ... then make the transparency value 0.
+          rgbaArray[index] = 0
+        }
+      }
+  }
+
+  function makePixelTransparentIfGreen(rgbaArray, index) {
+    // if we're at a transparency number
+    if (index % 4 == 3) {
+        let r = rgbaArray[index - 3] // the red value is 3 elements back
+        let g = rgbaArray[index - 2] // the green value is 2 elements back
+        let b = rgbaArray[index - 1] // the blue value is 1 element back
+
+        // if green is greater than green and red...
+        if (g > b && g > r) {
+          // ... then make the transparency value 0.
+          rgbaArray[index] = 0
+        }
+      }
+  }
+
   function makePixelTransparentIfBlue(rgbaArray, index) {
     // if we're at a transparency number
     if (index % 4 == 3) {
@@ -119,8 +149,14 @@
           "transparentFactor=", transparentFactor)
       }
 
+
+      makePixelTransparentIfRed(rgbaArray, index)
+
+      makePixelTransparentIfGreen(rgbaArray, index)
+
       makePixelTransparentIfBlue(rgbaArray, index)
 
+ 
     })
   }
 
