@@ -177,6 +177,14 @@
     console.log("changePixels end")
   }
 
+  function randomNumberColor() {
+    return Math.floor(Math.random() * 512 - 256)
+  }
+
+  function randomFilterSwitch() {
+    return Math.random() > 0.5
+  }
+
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function janesDraw(mode) {
       let redShifterControl = document.querySelector("#redshifter-box")
@@ -194,13 +202,13 @@
       let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
       
       if (mode == "RANDOM") {
-        redFactor = Math.floor(Math.random() * 512 - 256)
-        greenFactor = Math.floor(Math.random() * 512 - 256)
-        blueFactor = Math.floor(Math.random() * 512 - 256)
-        transparencyFactor = Math.floor(Math.random() * 512 - 256)
-        redFilterSelected = Math.random() > 0.5
-        greenFilterSelected = Math.random() > 0.5
-        blueFilterSelected = Math.random() > 0.5
+        redFactor = randomNumberColor()
+        greenFactor = randomNumberColor()
+        blueFactor = randomNumberColor()
+        transparencyFactor = Math.floor(Math.random() * 256)
+        redFilterSelected = randomFilterSwitch()
+        greenFilterSelected = randomFilterSwitch()
+        blueFilterSelected = randomFilterSwitch()
       }
 
       console.log("redfactor variable", redFactor)
