@@ -178,14 +178,17 @@
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-  function janesDraw() {
+  function janesDraw(mode) {
       let redShifterControl = document.querySelector("#redshifter-box")
       let greenShifterControl = document.querySelector("#greenshifter-box")
       let blueShifterControl = document.querySelector("#blueshifter-box")
       let transparencyShifterControl = document.querySelector("#transparencyshifter-box")
     
-      //let redFactor = parseInt(redShifterControl.value)
-      let redFactor = Math.floor(Math.random() * 512 - 256)
+      let redFactor = parseInt(redShifterControl.value)
+
+      if (mode == "RANDOM") {
+        redFactor = Math.floor(Math.random() * 512 - 256)
+      }
 
       console.log("redfactor variable", redFactor)
 
@@ -225,7 +228,7 @@
       }
       img.src = 'neeko.jpeg'; // Set source path
     }
-    janesDraw()
+    janesDraw("RANDOM")
 </script>
 <script>
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
