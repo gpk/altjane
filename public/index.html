@@ -78,10 +78,10 @@
       <div>transparency shifter</div>      
     </td>
     <td>
-      <div><input type="range" min="-255" max="255" id="redshifter-box" value="0" onchange="draw()"></input></div>
-      <div><input type="range" min="-255" max="255" id="greenshifter-box" value="0" onchange="draw()"></input></div>
-      <div><input type="range" min="-255" max="255" id="blueshifter-box" value="0" onchange="draw()"></input></div>
-      <div><input type="range" min="0" max="255" id="transparencyshifter-box" value="0" onchange="draw()"></input></div>
+      <div><input type="range" min="-255" max="255" id="redshifter-box" value="0" onchange="janesDraw()"></input></div>
+      <div><input type="range" min="-255" max="255" id="greenshifter-box" value="0" onchange="janesDraw()"></input></div>
+      <div><input type="range" min="-255" max="255" id="blueshifter-box" value="0" onchange="janesDraw()"></input></div>
+      <div><input type="range" min="0" max="255" id="transparencyshifter-box" value="0" onchange="janesDraw()"></input></div>
     </td>
     <td style="text-align: right; vertical-align: top">
       <div>red filter</div>
@@ -89,9 +89,9 @@
       <div>blue filter</div>
     </td>
     <td style="vertical-align: top">
-      <div><input type="checkbox" id="redfilter-checkbox" onchange="draw()"></input></div>
-      <div><input type="checkbox" id="greenfilter-checkbox" onchange="draw()"></input></div>
-      <div><input type="checkbox" id="bluefilter-checkbox" onchange="draw()"></input></div>
+      <div><input type="checkbox" id="redfilter-checkbox" onchange="janesDraw()"></input></div>
+      <div><input type="checkbox" id="greenfilter-checkbox" onchange="janesDraw()"></input></div>
+      <div><input type="checkbox" id="bluefilter-checkbox" onchange="janesDraw()"></input></div>
     </td>
   </tr>
 </table>
@@ -178,32 +178,20 @@
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-  function draw() {
-      let redShifterBox = document.querySelector("#redshifter-box")
-      let greenShifterBox = document.querySelector("#greenshifter-box")
-      let blueShifterBox = document.querySelector("#blueshifter-box")
-      let transparencyShifterBox = document.querySelector("#transparencyshifter-box")
+  function janesDraw() {
+      let redShifterControl = document.querySelector("#redshifter-box")
+      let greenShifterControl = document.querySelector("#greenshifter-box")
+      let blueShifterControl = document.querySelector("#blueshifter-box")
+      let transparencyShifterControl = document.querySelector("#transparencyshifter-box")
     
-      let redFactor = parseInt(redShifterBox.value)
-      let greenFactor = parseInt(greenShifterBox.value)
-      let blueFactor = parseInt(blueShifterBox.value)
-      let transparencyFactor = parseInt(transparencyShifterBox.value)
+      //let redFactor = parseInt(redShifterControl.value)
+      let redFactor = Math.floor(Math.random() * 512 - 256)
 
-      if (Number.isNaN(redFactor)) {
-        redFactor = 0
-      }
+      console.log("redfactor variable", redFactor)
 
-      if (Number.isNaN(greenFactor)) {
-        greenFactor = 0
-      }
-
-      if (Number.isNaN(blueFactor)) {
-        blueFactor = 0
-      }
-
-      if (Number.isNaN(transparencyFactor)) {
-        transparencyFactor = 0
-      }
+      let greenFactor = parseInt(greenShifterControl.value)
+      let blueFactor = parseInt(blueShifterControl.value)
+      let transparencyFactor = parseInt(transparencyShifterControl.value)
 
       let redFilterSelected = document.querySelector("#redfilter-checkbox").checked
       let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
@@ -217,12 +205,11 @@
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
         let myImageData = ctx.getImageData(0, 0, 420, 420)
-        let d = myImageData.data
         
         let statsElement = document.querySelector("#image-stats")
-        timeOps(d.length, statsElement, function() {
+        timeOps(myImageData.data.length, statsElement, function() {
           console.log("before changePixels", redFactor, greenFactor, blueFactor, transparencyFactor)
-          changePixels(d, redFactor, greenFactor, blueFactor, transparencyFactor, 
+          changePixels(myImageData.data, redFactor, greenFactor, blueFactor, transparencyFactor, 
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
           
@@ -231,10 +218,6 @@
 
         console.log(d)
 
-
-        
-        //
-
         // What happens is you get a ImageData object with a data attribute that 
         // contains a big array. For every pixel, there are four entries in the array, 
         // r, g, b, and alpha. So the array looks something like [pixel1R, pixel1G, pixel1B, 
@@ -242,7 +225,7 @@
       }
       img.src = 'neeko.jpeg'; // Set source path
     }
-    draw()
+    janesDraw()
 </script>
 <script>
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
