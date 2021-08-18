@@ -185,13 +185,6 @@
       let transparencyShifterControl = document.querySelector("#transparencyshifter-box")
     
       let redFactor = parseInt(redShifterControl.value)
-
-      if (mode == "RANDOM") {
-        redFactor = Math.floor(Math.random() * 512 - 256)
-      }
-
-      console.log("redfactor variable", redFactor)
-
       let greenFactor = parseInt(greenShifterControl.value)
       let blueFactor = parseInt(blueShifterControl.value)
       let transparencyFactor = parseInt(transparencyShifterControl.value)
@@ -199,7 +192,20 @@
       let redFilterSelected = document.querySelector("#redfilter-checkbox").checked
       let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
       let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
+      
+      if (mode == "RANDOM") {
+        redFactor = Math.floor(Math.random() * 512 - 256)
+        greenFactor = Math.floor(Math.random() * 512 - 256)
+        blueFactor = Math.floor(Math.random() * 512 - 256)
+        transparencyFactor = Math.floor(Math.random() * 512 - 256)
+        redFilterSelected = Math.random() > 0.5
+        greenFilterSelected = Math.random() > 0.5
+        blueFilterSelected = Math.random() > 0.5
+      }
 
+      console.log("redfactor variable", redFactor)
+
+  
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
 
@@ -218,8 +224,6 @@
           
           ctx.putImageData(myImageData, 0, 0)
         })
-
-        console.log(d)
 
         // What happens is you get a ImageData object with a data attribute that 
         // contains a big array. For every pixel, there are four entries in the array, 
