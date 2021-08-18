@@ -197,7 +197,11 @@
       let blueFactor = parseInt(blueShifterControl.value)
       let transparencyFactor = parseInt(transparencyShifterControl.value)
 
-      let redFilterSelected = document.querySelector("#redfilter-checkbox").checked
+      let redFilterCheckbox = document.querySelector("#redfilter-checkbox")
+      let greenFilterCheckbox = document.querySelector("#greenfilter-checkbox")
+      let blueFilterCheckbox = document.querySelector("#bluefilter-checkbox")
+      
+      let redFilterSelected = redFilterCheckbox.checked
       let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
       let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
       
@@ -206,9 +210,19 @@
         greenFactor = randomNumberColor()
         blueFactor = randomNumberColor()
         transparencyFactor = Math.floor(Math.random() * 256)
+
         redFilterSelected = randomFilterSwitch()
         greenFilterSelected = randomFilterSwitch()
         blueFilterSelected = randomFilterSwitch()
+
+        redShifterControl.value = "" + redFactor
+        greenShifterControl.value = "" + greenFactor
+        blueShifterControl.value = "" + blueFactor
+        transparencyShifterControl.value = "" + transparencyFactor
+
+        redFilterCheckbox.checked = redFilterSelected
+        greenFilterCheckbox.checked = greenFilterSelected
+        blueFilterCheckbox.checked = blueFilterSelected
       }
 
       console.log("redfactor variable", redFactor)
