@@ -1,0 +1,50 @@
+<script>
+    function firstExample() {
+        let a = ["cat", "dog", "bird", "fish"]
+
+        a.forEach(function(e, i) {
+            console.log(e)
+        })
+    }
+
+    function secondExample() {
+        let a = ["cat", "dog", "bird", "fish"]
+
+        a.forEach(function(e, i) {
+            let x = i ** i
+            let y = i % 2
+            
+            console.log(e)
+        })
+    }
+
+    function squareOf(x) {
+        return x ** 2
+    }
+
+    function isEven(x) {
+        return x % 2 == 0
+    }
+
+    function isOdd(x) {
+        return x % 2 == 1
+    }
+
+    function thirdExample() {
+        let a = ["cat", "dog", "bird", "fish"]
+
+        a.forEach(function(e, i) {
+            let p = squareOf(i)
+            let q = isEven(i)
+            let r = e.toUpperCase()
+        })
+    }
+</script>
+
+<html>
+    <ul>
+        <li><button onclick="firstExample()">First Example</button></li>
+        <li><button onclick="secondExample()">Second Example</button></li>
+        <li><button onclick="thirdExample()">Third Example</button></li>
+    </ul>
+</html>
