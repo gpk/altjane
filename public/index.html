@@ -176,19 +176,21 @@
     })
     console.log("changePixels end")
 
-    let chars = Array.from("hi")
-    chars.forEach(function(c) {
+    let chars = Array.from("jane")
+    chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
+      let slice1 = binary.slice(0,4).padStart(4, "0")
+      let slice2 = binary.slice(4,8).padStart(4, "0")
+      let rIndex = i * 4 
+      let gIndex = i * 4 + 1
       console.log(convertDecimalToBinary(c.charCodeAt(0)))
-      console.log(c)
-      console.log(binary.slice(0,4).padStart(4, "0"))
-      console.log(binary.slice(4,8).padStart(4, "0"))
+      console.log(c, i)
+      console.log(slice1)
+      console.log(slice2)
+      console.log(rgbaArray[rIndex] = slice1)
+      console.log(rgbaArray[gIndex])
     })
 
-    // let smallerRgbaArray = rgbaArray.slice(0,100)
-    // smallerRgbaArray.forEach(function(value, index) {
-    //   console.log(value, convertDecimalToBinary(value))
-    // })
   }
 
   function randomNumberColor() {
