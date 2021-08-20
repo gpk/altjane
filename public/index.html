@@ -175,6 +175,20 @@
       }
     })
     console.log("changePixels end")
+
+    let chars = Array.from("hi")
+    chars.forEach(function(c) {
+      let binary = convertDecimalToBinary(c.charCodeAt(0))
+      console.log(convertDecimalToBinary(c.charCodeAt(0)))
+      console.log(c)
+      console.log(binary.slice(0,4).padStart(4, "0"))
+      console.log(binary.slice(4,8).padStart(4, "0"))
+    })
+
+    // let smallerRgbaArray = rgbaArray.slice(0,100)
+    // smallerRgbaArray.forEach(function(value, index) {
+    //   console.log(value, convertDecimalToBinary(value))
+    // })
   }
 
   function randomNumberColor() {
