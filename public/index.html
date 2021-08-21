@@ -218,8 +218,29 @@
 
 
     // decode
-    rgbaArray.slice(0,200).forEach(function(value, index) {
+    rgbaArray.slice(0,12).forEach(function(value, index) {
+      
       console.log("array entry", value, index)
+
+
+      if (index % 4 == 0) {
+        console.log("red", value)
+        console.log(convertDecimalToBinary(value))
+      }
+      if (index % 4 == 1) {
+        console.log("green", value)
+        console.log(convertDecimalToBinary(value))
+      }
+      // what we just did was convertDecimalToBinary of red and green
+        
+
+
+     
+     
+      
+      
+      
+      
       // decode the stuff you hid in here
     })
 
