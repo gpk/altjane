@@ -176,7 +176,7 @@
     })
     console.log("changePixels end")
 
-    let chars = Array.from("jane")
+    let chars = Array.from("cupcake wants you to die")
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,4).padStart(4, "0")
@@ -189,19 +189,28 @@
       let sliceR2 = binaryR.slice(4,8).padStart(4, "0")
       let sliceG1 = binaryG.slice(0,4).padStart(4, "0")
       let sliceG2 = binaryG.slice(4,8).padStart(4, "0")
+      let secretBinaryColorRed = sliceR1 + slice2
+      let secretBinaryColorGreen = sliceG1 + slice1
+      let secretColorRed = convertBinaryToDecimal(secretBinaryColorRed)
+      let secretColorGreen = convertBinaryToDecimal(secretBinaryColorGreen)
       
       console.log(c, i)
       console.log(slice1)
       console.log(slice2)
-      console.log("r")
+      console.log("     r")
       console.log(sliceR1)
       console.log(sliceR2)
-      console.log("g")
+      console.log("     g")
       console.log(sliceG1)
       console.log(sliceG2)
-      console.log("newcolor")
-      console.log(sliceR1 + slice2)
-      console.log(sliceG1 + slice1)
+      console.log("     newcolor")
+      console.log(secretBinaryColorRed)
+      console.log(secretBinaryColorGreen)
+      console.log("  scr", secretColorRed)
+      console.log("  scg", secretColorGreen)
+
+      rgbaArray[rIndex] = secretColorRed
+      rgbaArray[gIndex] = secretColorGreen
 
 
     })
