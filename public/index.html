@@ -176,7 +176,8 @@
     })
     console.log("changePixels end")
 
-    let chars = Array.from("cupcake wants you to die")
+    // encode
+    let chars = Array.from("jane                                                        cupcake wants you to die")
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,4).padStart(4, "0")
@@ -213,6 +214,13 @@
       rgbaArray[gIndex] = secretColorGreen
 
 
+    })
+
+
+    // decode
+    rgbaArray.slice(0,200).forEach(function(value, index) {
+      console.log("array entry", value, index)
+      // decode the stuff you hid in here
     })
 
   }
