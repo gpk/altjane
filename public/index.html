@@ -223,51 +223,28 @@
     // x 2. slice r&g in the middle
     // x 3. take out 4 bits of the 1st set of r&g
     // x 4. put the last 4 bits of G in front of 4 bits in R
-    // 5. turn the binary into letters
-    // 6. redo from 3. for 2nd letter
+    // x 5. turn the binary into letters
+    // x 6. redo from 3. for 2nd letter
 
-    rgbaArray.slice(0,12).forEach(function(value, index) {
-      
-      console.log("array entry", value, index)
+    let message = ""
 
-
+    rgbaArray.slice(0,96).forEach(function(value, index) {      
       if (index % 4 == 0) {
-        console.log("red", value)
         let rBinary = convertDecimalToBinary(value)
-        console.log(rBinary)
         let rSlice1 = rBinary.slice(0,4)
         let secretLetter1 = rBinary.slice(4,8)
-        console.log(rSlice1)
-        console.log(secretLetter1)
         let green = rgbaArray[index + 1]
-        console.log("g", green, index + 1)
         let gBinary = convertDecimalToBinary(green)
         let gSlice1 = gBinary.slice(0,4)
         let secretLetter2 = gBinary.slice(4,8)
-        console.log(gBinary)
-        console.log(gSlice1)
-        console.log(secretLetter2)
         let secretBinaryLetter = secretLetter2 + secretLetter1
-        console.log("secret letter", secretBinaryLetter)
         let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
-        console.log(secretLetter)
-        console.log('the secret letter', String.fromCharCode(secretLetter))
+        let verySecretLetter = String.fromCharCode(secretLetter)
+        message = message + verySecretLetter
       }
-     
-
-      
-      // what we just did was convertDecimalToBinary of red and green
-        
-
-
-     
-     
-      
-      
-      
-      
-      // decode the stuff you hid in here
     })
+
+    console.log("message", message)
 
   }
 
