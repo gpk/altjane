@@ -218,6 +218,14 @@
 
 
     // decode
+
+    // x 1. take r&g out of array
+    // x 2. slice r&g in the middle
+    // x 3. take out 4 bits of the 1st set of r&g
+    // 4. put the last 4 bits of G in front of 4 bits in R
+    // 5. turn the binary into letters
+    // 6. redo from 3. for 2nd letter
+
     rgbaArray.slice(0,12).forEach(function(value, index) {
       
       console.log("array entry", value, index)
@@ -225,11 +233,21 @@
 
       if (index % 4 == 0) {
         console.log("red", value)
-        console.log(convertDecimalToBinary(value))
+        let rBinary = convertDecimalToBinary(value)
+        console.log(rBinary)
+        let rSlice1 = rBinary.slice(0,4).padStart(4, "0")
+        let secretLetter1 = rBinary.slice(4,8).padStart(4, "0")
+        console.log(rSlice1)
+        console.log(secretLetter1)
       }
       if (index % 4 == 1) {
         console.log("green", value)
-        console.log(convertDecimalToBinary(value))
+        let gBinary = convertDecimalToBinary(value)
+        console.log(gBinary)
+        let gSlice1 = gBinary.slice(0,4).padStart(4, "0")
+        let secretLetter2 = gBinary.slice(4,8).padStart(4, "0")
+        console.log(gSlice1)
+        console.log(secretLetter2)
       }
       // what we just did was convertDecimalToBinary of red and green
         
