@@ -178,10 +178,10 @@
 
     // encode
     let input = "cupcake wants you to die"
-
+    let stringTerminator = String.fromCharCode(0)
     
 
-    let chars = Array.from(input + "X")
+    let chars = Array.from(input + stringTerminator)
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -245,13 +245,12 @@
         let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
         let verySecretLetter = String.fromCharCode(secretLetter)
 
-        if ("X" == verySecretLetter) {
+        if (stringTerminator == verySecretLetter) {
           beforeTerminator = false
         }
 
         if (beforeTerminator) {
-          message = message + verySecretLetter 
-          
+          message = message + verySecretLetter
         }
       }
     })
