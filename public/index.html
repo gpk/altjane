@@ -181,7 +181,8 @@
     let stringTerminator = String.fromCharCode(0)
     
 
-    let chars = Array.from(input + stringTerminator)
+    // let chars = Array.from(input + stringTerminator)
+    let chars = Array.from("")
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -219,8 +220,14 @@
 
 
     })
+    
+    // ^^^^^ that happened 1 month ago
 
 
+
+
+
+    // then upload to:
     // decode
 
     // x 1. take r&g out of array
@@ -252,10 +259,15 @@
         if (beforeTerminator) {
           message = message + verySecretLetter
         }
+
+        if (message.length > 100) {
+          message = ""
+          beforeTerminator = false
+        }
       }
     })
     
-    console.log("message", message)
+    console.log("message :", message)
 
   }
 
