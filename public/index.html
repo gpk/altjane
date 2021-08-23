@@ -177,12 +177,11 @@
     console.log("changePixels end")
 
     // encode
-    let input = "cupcake wants you to die"
+    let input = "cupcake wants you to die cupcake wants you to die cupcake wants you to die cupcake wants you to die cupcake wants you to die"
+    let messageIndicator = "#"
     let stringTerminator = String.fromCharCode(0)
     
-
-    // let chars = Array.from(input + stringTerminator)
-    let chars = Array.from("")
+    let chars = Array.from(messageIndicator + input + stringTerminator)
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -252,17 +251,16 @@
         let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
         let verySecretLetter = String.fromCharCode(secretLetter)
 
+        if (index == 0 && value == messageIndicator) {
+          beforeTerminator = false
+        }
+
         if (stringTerminator == verySecretLetter) {
           beforeTerminator = false
         }
 
         if (beforeTerminator) {
           message = message + verySecretLetter
-        }
-
-        if (message.length > 100) {
-          message = ""
-          beforeTerminator = false
         }
       }
     })
