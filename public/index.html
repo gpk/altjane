@@ -177,7 +177,11 @@
     console.log("changePixels end")
 
     // encode
-    let chars = Array.from("cupcake wants you to die")
+    let input = "cupcake wants you to die"
+
+    
+
+    let chars = Array.from(input + "X")
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -195,20 +199,20 @@
       let secretColorRed = convertBinaryToDecimal(secretBinaryColorRed)
       let secretColorGreen = convertBinaryToDecimal(secretBinaryColorGreen)
       
-      // console.log(c, i)
-      // console.log(slice1)
-      // console.log(slice2)
-      // console.log("     r")
-      // console.log(sliceR1)
-      // console.log(sliceR2)
-      // console.log("     g")
-      // console.log(sliceG1)
-      // console.log(sliceG2)
-      // console.log("     newcolor")
-      // console.log(secretBinaryColorRed)
-      // console.log(secretBinaryColorGreen)
-      // console.log("  scr", secretColorRed)
-      // console.log("  scg", secretColorGreen)
+      console.log(c, i)
+      console.log(slice1)
+      console.log(slice2)
+      console.log("     r")
+      console.log(sliceR1)
+      console.log(sliceR2)
+      console.log("     g")
+      console.log(sliceG1)
+      console.log(sliceG2)
+      console.log("     newcolor")
+      console.log(secretBinaryColorRed)
+      console.log(secretBinaryColorGreen)
+      console.log("  scr", secretColorRed)
+      console.log("  scg", secretColorGreen)
 
       rgbaArray[rIndex] = secretColorRed
       rgbaArray[gIndex] = secretColorGreen
@@ -227,7 +231,7 @@
     // x 6. redo from 3. for 2nd letter
 
     let message = ""
-
+    let beforeTerminator = true
     rgbaArray.forEach(function(value, index) {      
       if (index % 4 == 0) {
         let rBinary = convertDecimalToBinary(value)
@@ -240,11 +244,19 @@
         let secretBinaryLetter = secretLetter2 + secretLetter1
         let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
         let verySecretLetter = String.fromCharCode(secretLetter)
-        message = message + verySecretLetter
+
+        if ("X" == verySecretLetter) {
+          beforeTerminator = false
+        }
+
+        if (beforeTerminator) {
+          message = message + verySecretLetter 
+          
+        }
       }
     })
-
-    //console.log("message", message)
+    
+    console.log("message", message)
 
   }
 
