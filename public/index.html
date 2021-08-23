@@ -195,20 +195,20 @@
       let secretColorRed = convertBinaryToDecimal(secretBinaryColorRed)
       let secretColorGreen = convertBinaryToDecimal(secretBinaryColorGreen)
       
-      console.log(c, i)
-      console.log(slice1)
-      console.log(slice2)
-      console.log("     r")
-      console.log(sliceR1)
-      console.log(sliceR2)
-      console.log("     g")
-      console.log(sliceG1)
-      console.log(sliceG2)
-      console.log("     newcolor")
-      console.log(secretBinaryColorRed)
-      console.log(secretBinaryColorGreen)
-      console.log("  scr", secretColorRed)
-      console.log("  scg", secretColorGreen)
+      // console.log(c, i)
+      // console.log(slice1)
+      // console.log(slice2)
+      // console.log("     r")
+      // console.log(sliceR1)
+      // console.log(sliceR2)
+      // console.log("     g")
+      // console.log(sliceG1)
+      // console.log(sliceG2)
+      // console.log("     newcolor")
+      // console.log(secretBinaryColorRed)
+      // console.log(secretBinaryColorGreen)
+      // console.log("  scr", secretColorRed)
+      // console.log("  scg", secretColorGreen)
 
       rgbaArray[rIndex] = secretColorRed
       rgbaArray[gIndex] = secretColorGreen
@@ -228,7 +228,7 @@
 
     let message = ""
 
-    rgbaArray.slice(0,96).forEach(function(value, index) {      
+    rgbaArray.forEach(function(value, index) {      
       if (index % 4 == 0) {
         let rBinary = convertDecimalToBinary(value)
         let rSlice1 = rBinary.slice(0,4)
@@ -244,7 +244,7 @@
       }
     })
 
-    console.log("message", message)
+    //console.log("message", message)
 
   }
 
@@ -484,5 +484,22 @@
     outputDiv.innerHTML = outputStr
   }
 </script>
+
+<script>
+  'use strict'
+
+  console.log("XXXX")
+
+  let message = ""
+  let a = ["cat ", "dog ", "fish ", "snake "]
+
+  a.forEach(function(e, i) {
+    console.log(e, i)
+    message = message + "animal : " + e
+  })
+  
+  console.log("test message is:", message)
+</script>
+
 </body>
 </html>
