@@ -9,11 +9,11 @@
         let message = ""
 
         if (a == b) {
-            message = message + "hello"
+            message = "hello"
         }
 
         if (a == c) {
-            message = message + "bye"
+            message = "bye"
         }
 
         console.log(message)
@@ -32,9 +32,6 @@
             console.log("hello")
         })
     }
-
-    // for each of the following:
-      // write out the iteration table for the for loop
 
     function thirdExample() {
         // expected output:
@@ -77,6 +74,35 @@
 
         console.log(message)
     }
+
+    function sixthExample() {
+        // remember that you can turn any string into an array of characters using Array.from("some string")
+
+        // expected output:
+            // c
+            // a
+            // t
+            // d
+            // o
+            // g
+
+        let a = ["cat", "dog"]
+
+        a.forEach(function() {
+            
+        })
+    }
+
+    function seventhExample() {
+        // expected output:
+            // cat has 3 letters, in all caps it's CAT, backwards it's tac
+            // bird has 4 letters, in all caps it's BIRD, backwards it's drib
+
+        let a = ["cat", "bird"]
+        a.forEach(function() {
+            
+        })
+    }
 </script>
 
 <html>
@@ -84,5 +110,9 @@
         <li><button onclick="firstExample()">First Example</button></li>
         <li><button onclick="secondExample()">Second Example</button></li>
         <li><button onclick="thirdExample()">Third Example</button></li>
+        <li><button onclick="fourthExample()">Fourth Example</button></li>
+        <li><button onclick="fifthExample()">Fifth Example</button></li>
+        <li><button onclick="sixthExample()">Sixth Example</button></li>
+        <li><button onclick="seventhExample()">Seventh Example</button></li>
     </ul>
 </html>
