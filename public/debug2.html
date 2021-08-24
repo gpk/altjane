@@ -1,0 +1,88 @@
+<script>
+    function firstExample() {
+        // expected output:
+            // hello
+
+        let a = "X"
+        let b = 1
+        let c = 2
+        let message = ""
+
+        if (a == b) {
+            message = message + "hello"
+        }
+
+        if (a == c) {
+            message = message + "bye"
+        }
+
+        console.log(message)
+    }
+
+    function secondExample() {
+        // expected output:
+            // hello cat 0
+            // hello dog 1
+            // hello bird 2
+            // hello fish 3
+
+        let a = ["cat", "dog", "bird", "fish"]
+
+        a.forEach(function() {
+            console.log("hello")
+        })
+    }
+
+    // for each of the following:
+      // write out the iteration table for the for loop
+
+    function thirdExample() {
+        // expected output:
+            // hello dog 1
+
+        let a = ["cat", "dog", "bird", "fish"]
+        let message = ""
+
+        a.forEach(function() {
+            message = "hello"
+        })
+
+        console.log(message)
+    }
+
+    function fourthExample() {
+        // expected output:
+            // hello cat 0 hello dog 1 hello bird 2 hello fish 3
+
+        let a = ["cat", "dog", "bird", "fish"]
+        let message = ""
+
+        a.forEach(function() {
+            message = "hello"
+        })
+
+        console.log(message)
+    }
+
+    function fifthExample() {
+        // expected output:
+            // hello cat 0 hello bird 2
+
+        let a = ["cat", "dog", "bird", "fish"]
+        let message = ""
+
+        a.forEach(function() {
+            message = "hello"
+        })
+
+        console.log(message)
+    }
+</script>
+
+<html>
+    <ul>
+        <li><button onclick="firstExample()">First Example</button></li>
+        <li><button onclick="secondExample()">Second Example</button></li>
+        <li><button onclick="thirdExample()">Third Example</button></li>
+    </ul>
+</html>
