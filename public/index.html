@@ -175,6 +175,99 @@
       }
     })
     console.log("changePixels end")
+
+    // encode
+    let input = "cupcake"
+    let messageIndicator = "#"
+    let stringTerminator = String.fromCharCode(0)
+    
+    // let chars = Array.from(messageIndicator + input + stringTerminator)
+    let chars = Array.from("")
+    chars.forEach(function(c, i) {
+      let binary = convertDecimalToBinary(c.charCodeAt(0))
+      let slice1 = binary.slice(0,3)
+      let slice2 = binary.slice(3,8)
+      let rIndex = i * 4 
+      let gIndex = i * 4 + 1
+      let binaryR = convertDecimalToBinary(rgbaArray[rIndex])
+      let binaryG = convertDecimalToBinary(rgbaArray[gIndex])
+      let sliceR1 = binaryR.slice(0,4)
+      let sliceR2 = binaryR.slice(4,8)
+      let sliceG1 = binaryG.slice(0,4)
+      let sliceG2 = binaryG.slice(4,8)
+      let secretBinaryColorRed = sliceR1 + slice2
+      let secretBinaryColorGreen = sliceG1 + slice1
+      let secretColorRed = convertBinaryToDecimal(secretBinaryColorRed)
+      let secretColorGreen = convertBinaryToDecimal(secretBinaryColorGreen)
+      
+      console.log(c, i)
+      console.log(slice1)
+      console.log(slice2)
+      console.log("     r")
+      console.log(sliceR1)
+      console.log(sliceR2)
+      console.log("     g")
+      console.log(sliceG1)
+      console.log(sliceG2)
+      console.log("     newcolor")
+      console.log(secretBinaryColorRed)
+      console.log(secretBinaryColorGreen)
+      console.log("  scr", secretColorRed)
+      console.log("  scg", secretColorGreen)
+
+      rgbaArray[rIndex] = secretColorRed
+      rgbaArray[gIndex] = secretColorGreen
+
+
+    })
+    
+    // ^^^^^ that happened 1 month ago
+
+
+
+
+
+    // then upload to:
+    // decode
+
+    // x 1. take r&g out of array
+    // x 2. slice r&g in the middle
+    // x 3. take out 4 bits of the 1st set of r&g
+    // x 4. put the last 4 bits of G in front of 4 bits in R
+    // x 5. turn the binary into letters
+    // x 6. redo from 3. for 2nd letter
+
+    let message = ""
+    let beforeTerminator = true
+    rgbaArray.forEach(function(value, index) {      
+      if (index % 4 == 0) {
+        let rBinary = convertDecimalToBinary(value)
+        let rSlice1 = rBinary.slice(0,4)
+        let secretLetter1 = rBinary.slice(4,8)
+        let green = rgbaArray[index + 1]
+        let gBinary = convertDecimalToBinary(green)
+        let gSlice1 = gBinary.slice(0,4)
+        let secretLetter2 = gBinary.slice(4,8)
+        let secretBinaryLetter = secretLetter2 + secretLetter1
+        let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
+        let verySecretLetter = String.fromCharCode(secretLetter)
+
+        if (index == 0 && value != messageIndicator) {
+          beforeTerminator = false
+        }
+
+        if (stringTerminator == verySecretLetter) {
+          beforeTerminator = false
+        }
+
+        if (beforeTerminator) {
+          message = message + verySecretLetter
+        }
+      }
+    })
+    
+    console.log("message :", message)
+
   }
 
   function randomNumberColor() {
@@ -202,8 +295,8 @@
       let blueFilterCheckbox = document.querySelector("#bluefilter-checkbox")
       
       let redFilterSelected = redFilterCheckbox.checked
-      let greenFilterSelected = document.querySelector("#greenfilter-checkbox").checked
-      let blueFilterSelected = document.querySelector("#bluefilter-checkbox").checked
+      let greenFilterSelected = greenFilterCheckbox.checked
+      let blueFilterSelected = blueFilterCheckbox.checked
       
       if (mode == "RANDOM") {
         redFactor = randomNumberColor()
@@ -413,5 +506,22 @@
     outputDiv.innerHTML = outputStr
   }
 </script>
+
+<script>
+  'use strict'
+
+  console.log("XXXX")
+
+  let message = ""
+  let a = ["cat ", "dog ", "fish ", "snake "]
+
+  a.forEach(function(e, i) {
+    console.log(e, i)
+    message = message + "animal : " + e
+  })
+  
+  console.log("test message is:", message)
+</script>
+
 </body>
 </html>
