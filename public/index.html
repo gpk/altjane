@@ -181,8 +181,7 @@
     let messageIndicator = "#"
     let stringTerminator = String.fromCharCode(0)
     
-    // let chars = Array.from(messageIndicator + input + stringTerminator)
-    let chars = Array.from("")
+    let chars = Array.from(messageIndicator + input + stringTerminator)
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -238,7 +237,6 @@
     // x 6. redo from 3. for 2nd letter
 
     let message = ""
-    let beforeTerminator = true
     rgbaArray.forEach(function(value, index) {      
       if (index % 4 == 0) {
         let rBinary = convertDecimalToBinary(value)
@@ -252,17 +250,7 @@
         let secretLetter = convertBinaryToDecimal(secretBinaryLetter)
         let verySecretLetter = String.fromCharCode(secretLetter)
 
-        if (index == 0 && value != messageIndicator) {
-          beforeTerminator = false
-        }
-
-        if (stringTerminator == verySecretLetter) {
-          beforeTerminator = false
-        }
-
-        if (beforeTerminator) {
-          message = message + verySecretLetter
-        }
+        message = message + verySecretLetter
       }
     })
     

@@ -3,7 +3,7 @@
         // expected output:
             // hello
 
-        let a = "X"
+        let a = 1
         let b = 1
         let c = 2
         let message = ""
@@ -28,8 +28,8 @@
 
         let a = ["cat", "dog", "bird", "fish"]
 
-        a.forEach(function() {
-            console.log("hello")
+        a.forEach(function(e, i) {
+            console.log("hello", e, i)
         })
     }
 
@@ -40,8 +40,10 @@
         let a = ["cat", "dog", "bird", "fish"]
         let message = ""
 
-        a.forEach(function() {
-            message = "hello"
+        a.forEach(function(e, i) {
+            if (i == 1) {
+                message = "hello " + e + " " + i
+            }
         })
 
         console.log(message)
@@ -54,8 +56,8 @@
         let a = ["cat", "dog", "bird", "fish"]
         let message = ""
 
-        a.forEach(function() {
-            message = "hello"
+        a.forEach(function(e, i) {
+           message = message + " hello " + e + " " + i 
         })
 
         console.log(message)
@@ -68,13 +70,17 @@
         let a = ["cat", "dog", "bird", "fish"]
         let message = ""
 
-        a.forEach(function() {
-            message = "hello"
-        })
+        a.forEach(function(e, i) {
+            if (i % 4 == 0) {
+                message = " hello " + e + " " + i
+            } else if (i % 4 == 2) {
+                message = message + " hello " + e + " " + i
+            }
+        })-
 
         console.log(message)
     }
-
+      
     function sixthExample() {
         // remember that you can turn any string into an array of characters using Array.from("some string")
 
@@ -87,32 +93,64 @@
             // g
 
         let a = ["cat", "dog"]
-
-        a.forEach(function() {
-            
+        a.forEach(function(e, i) {
+            let characterArray = Array.from(e)
+            characterArray.forEach(function(e, i) {
+                console.log(e)   
+            }) 
         })
+
     }
 
     function seventhExample() {
         // expected output:
             // cat has 3 letters, in all caps it's CAT, backwards it's tac
             // bird has 4 letters, in all caps it's BIRD, backwards it's drib
+            // let a = ["cat", "bird"]
+                // a.forEach(function(e, i) {
+                //console.log(a.reverse())
+            //})
 
         let a = ["cat", "bird"]
-        a.forEach(function() {
-            
+        
+        a.forEach(function(e, i) {
+            let line = ""
+
+            if (i % 2 == 0) {
+                number = 3
+            } else if (i % 2 == 1) {
+                number = 4
+            }
+            let elementUppercase = e.toUpperCase()
+            let characterArray = Array.from(e)
+            let reverseCharacterArray = characterArray.reverse()
+            reverseCharacterArray.forEach(function(e, i) {
+                line = line + e
+            }) 
+            message = e + " has " + number + " letters, in all caps it's " + elementUppercase + ", backwards it's " + line
+            console.log(message)
         })
     }
+    // line = line + e
+    // if (i == 0) {
+    //     line = e
+    // }
 </script>
 
 <html>
-    <ul>
-        <li><button onclick="firstExample()">First Example</button></li>
-        <li><button onclick="secondExample()">Second Example</button></li>
-        <li><button onclick="thirdExample()">Third Example</button></li>
-        <li><button onclick="fourthExample()">Fourth Example</button></li>
-        <li><button onclick="fifthExample()">Fifth Example</button></li>
-        <li><button onclick="sixthExample()">Sixth Example</button></li>
-        <li><button onclick="seventhExample()">Seventh Example</button></li>
-    </ul>
+    <body>
+        <ul>
+            <li><button onclick="firstExample()">First Example</button></li>
+            <li><button onclick="secondExample()">Second Example</button></li>
+            <li><button onclick="thirdExample()">Third Example</button></li>
+            <li><button onclick="fourthExample()">Fourth Example</button></li>
+            <li><button onclick="fifthExample()">Fifth Example</button></li>
+            <li><button onclick="sixthExample()">Sixth Example</button></li>
+            <li><button onclick="seventhExample()">Seventh Example</button></li>
+        </ul>
+    </body>
 </html>
+
+
+
+    
