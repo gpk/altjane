@@ -245,29 +245,34 @@
       
     // 2) if it does, loop through the pixels and get the message out
     if (firstVerySecretLetter == messageIndicator) {
+      
       let message = ""
+      let terminator = false
+
       rgbaArray.forEach(function(value, index) {      
         if (index % 4 == 0) {
           let red = value
           let green = rgbaArray[index + 1]
           let verySecretLetter = extractLetter(red, green)
 
-          message = message + verySecretLetter     
-          
+          if (stringTerminator == verySecretLetter) {
+            terminator = true
+          }
+
+          if (!terminator) {
+            message = message + verySecretLetter     
+          }
         }
         
       })
       
-      console.log("message :", message)
-      
+      console.log("message :", message, message.length)
     }
-
-    // if (firstVerySecretLetter == messageIndicator) {
   }
 
   // input: redDecimalValue
   // input: greenDecimalValue
-  // output: verySecretLetter
+  // output: verySecretLet  
   function extractLetter(redDecimalValue, greenDecimalValue) {
     let rBinary = convertDecimalToBinary(redDecimalValue)
     let rSlice1 = rBinary.slice(0,4)
