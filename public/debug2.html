@@ -71,9 +71,7 @@
         let message = ""
 
         a.forEach(function(e, i) {
-            if (i % 4 == 0) {
-                message = " hello " + e + " " + i
-            } else if (i % 4 == 2) {
+            if (i % 2 == 0) {
                 message = message + " hello " + e + " " + i
             }
         })-
@@ -111,23 +109,18 @@
                 //console.log(a.reverse())
             //})
 
-        let a = ["cat", "bird"]
+        let a = ["cat", "bird", "horse", "buffalo", "wildebeast"]
         
         a.forEach(function(e, i) {
             let line = ""
 
-            if (i % 2 == 0) {
-                number = 3
-            } else if (i % 2 == 1) {
-                number = 4
-            }
             let elementUppercase = e.toUpperCase()
             let characterArray = Array.from(e)
             let reverseCharacterArray = characterArray.reverse()
             reverseCharacterArray.forEach(function(e, i) {
                 line = line + e
             }) 
-            message = e + " has " + number + " letters, in all caps it's " + elementUppercase + ", backwards it's " + line
+            message = e + " has " + e.length() + " letters, in all caps it's " + elementUppercase + ", backwards it's " + line
             console.log(message)
         })
     }

@@ -242,22 +242,27 @@
     let firstG = rgbaArray[1]
     let firstVerySecretLetter = extractLetter(firstR, firstG)
     console.log("first letter", firstVerySecretLetter)
-
+      
     // 2) if it does, loop through the pixels and get the message out
+    if (firstVerySecretLetter == messageIndicator) {
+      let message = ""
+      rgbaArray.forEach(function(value, index) {      
+        if (index % 4 == 0) {
+          let red = value
+          let green = rgbaArray[index + 1]
+          let verySecretLetter = extractLetter(red, green)
 
-    let message = ""
-    rgbaArray.forEach(function(value, index) {      
-      if (index % 4 == 0) {
-        let red = value
-        let green = rgbaArray[index + 1]
-        let verySecretLetter = extractLetter(red, green)
+          message = message + verySecretLetter     
+          
+        }
+        
+      })
+      
+      console.log("message :", message)
+      
+    }
 
-        message = message + verySecretLetter
-      }
-    })
-    
-    console.log("message :", message)
-
+    // if (firstVerySecretLetter == messageIndicator) {
   }
 
   // input: redDecimalValue
