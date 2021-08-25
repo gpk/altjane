@@ -236,6 +236,16 @@
     // x 5. turn the binary into letters
     // x 6. redo from 3. for 2nd letter
 
+
+    // 1) does the first pixel contain a hash character?
+    let firstR = rgbaArray[0]
+    let firstG = rgbaArray[1]
+
+
+
+
+    // 2) if it does, loop through the pixels and get the message out
+
     let message = ""
     rgbaArray.forEach(function(value, index) {      
       if (index % 4 == 0) {
@@ -256,6 +266,13 @@
     
     console.log("message :", message)
 
+  }
+
+  // input: redDecimalValue
+  // input: greenDecimalValue
+  // output: verySecretLetter
+  function extractLetter(redDecimalValue, greenDecimalValue) {
+    return verySecretLetter
   }
 
   function randomNumberColor() {
