@@ -67,6 +67,7 @@
   console.log(add(456,654))
   console.log(add(123,321))
 </script>
+<div class="roundy-box">
 <canvas id="tutorial" width="420" height="420"></canvas>
 
 <table>
@@ -97,6 +98,7 @@
 </table>
 <div><input type="text" id="secret-message-box" onchange="janesDraw()" size="60"></input></div>
 <div>stats: <span id="image-stats"></span></div>
+</div>
 <script>
 
   function timeOps(count, statsElement, workFn) {
@@ -299,6 +301,10 @@
     return Math.random() > 0.5
   }
 
+  function loadImage(imageByteArray) {
+
+  }
+
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function janesDraw(mode) {
       let redShifterControl = document.querySelector("#redshifter-box")
@@ -350,7 +356,7 @@
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
         let myImageData = ctx.getImageData(0, 0, 420, 420)
-        
+
         let statsElement = document.querySelector("#image-stats")
         timeOps(myImageData.data.length, statsElement, function() {
           console.log("before changePixels", redFactor, greenFactor, blueFactor, transparencyFactor)
@@ -385,32 +391,28 @@
 </script>
 
 
-<hr>
+<div class="roundy-box">
 
 <script>
-  function fakeUpload(event) {
-
-    var reader = new FileReader()
+  function uploadFile(event) {
+    let reader = new FileReader()
     reader.onload = function() {
-      var arrayBuffer = this.result,
-      array = new Uint8Array(arrayBuffer)
-      binaryString = String.fromCharCode.apply(null, array)
-
-      console.log("XXX", binaryString)
+      let arrayBuffer = this.result
+      let arr = new Uint8Array(arrayBuffer)
+      loadImage(arr)
     }
     reader.readAsArrayBuffer(event.target.files[0])
   }
-
 </script>
 
-Upload secret neeko image
+you can upload your own neeko image if you want
 <div><input type="file" id="file-upload-box"></input></div>
 
 <script>
-  document.querySelector("#file-upload-box").addEventListener("change", fakeUpload)
+  document.querySelector("#file-upload-box").addEventListener("change", uploadFile)
 </script>
 
-
+</div>
 
 
 

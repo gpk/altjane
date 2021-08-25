@@ -100,3 +100,10 @@ aside{
 #output-box {
   border: 2px dotted palevioletred;
 }
+
+.roundy-box {
+  border: 1px dotted #999;
+  border-radius: 10px;
+  padding: 1em;
+  margin-top: 0.25em;
+}
