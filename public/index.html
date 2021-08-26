@@ -93,6 +93,7 @@
       <div><input type="checkbox" id="redfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="greenfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="bluefilter-checkbox" onchange="drawNeeko()"></input></div>
+      <div><button onclick="resetColor()">Reset Color</button></div>
     </td>
   </tr>
 </table>
@@ -100,6 +101,18 @@
 <div>stats: <span id="image-stats"></span></div>
 </div>
 <script>
+  function resetColor() {
+    document.querySelector("#redshifter-box").value = "0"
+    document.querySelector("#greenshifter-box").value = "0"
+    document.querySelector("#blueshifter-box").value = "0"
+    document.querySelector("#transparencyshifter-box").value = "0"
+  
+    document.querySelector("#redfilter-checkbox").checked = false
+    document.querySelector("#greenfilter-checkbox").checked = false
+    document.querySelector("#bluefilter-checkbox").checked = false
+
+    drawNeeko()
+  }
 
   function timeOps(count, statsElement, workFn) {
     const startMs = new Date().getTime()
