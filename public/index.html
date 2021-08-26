@@ -68,6 +68,7 @@
   console.log(add(123,321))
 </script>
 <div class="roundy-box">
+<img style="display:none" id="hidden-img" src="neeko.jpeg#foo"></canvas>
 <canvas id="tutorial" width="420" height="420"></canvas>
 
 <table>
@@ -315,11 +316,7 @@
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
-  function drawNeeko(mode, imgURL) {
-      if (!imgURL) {
-        imgURL = "neeko.jpeg"
-      }
-
+  function drawNeeko(mode) {
       let redShifterControl = document.querySelector("#redshifter-box")
       let greenShifterControl = document.querySelector("#greenshifter-box")
       let blueShifterControl = document.querySelector("#blueshifter-box")
@@ -364,7 +361,7 @@
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
 
-      let img = new Image()
+      let img = document.querySelector("#hidden-img")
       img.onload = function() {
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
@@ -385,7 +382,8 @@
         // r, g, b, and alpha. So the array looks something like [pixel1R, pixel1G, pixel1B, 
         // pixel1Alpha, ..., pixelNR, pixelNG, pixelNB, pixelNAlpha].
       }
-      img.src = imgURL
+      console.log(img.src.split("?")[0] + "#" + new Date().getTime())
+      img.src = img.src.split("?")[0] + "#" + new Date().getTime()
     }
     drawNeeko("RANDOM")
 </script>
