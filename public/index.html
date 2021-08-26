@@ -167,38 +167,11 @@
       }
   }
 
-  function changePixels(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor, 
-                        redFilterSelected, greenFilterSelected, blueFilterSelected) {
-    console.log("changePixels begin", redFactor, greenFactor, blueFactor, transparentFactor)
-    rgbaArray.forEach(function(value, index) {
-      if (index % 4 == 0) {
-        rgbaArray[index] = value + redFactor
-      } else if (index % 4 == 1) {
-        rgbaArray[index] = value + greenFactor
-      } else if (index % 4 == 2) {
-        rgbaArray[index] = value + blueFactor
-      } else if (index % 4 == 3) {
-        rgbaArray[index] = value - transparentFactor
-      }
-      
-      if (redFilterSelected) {
-        makePixelTransparentIfRed(rgbaArray, index)
-      }
-      if (greenFilterSelected) {
-        makePixelTransparentIfGreen(rgbaArray, index)
-      }
-      if (blueFilterSelected) {
-        makePixelTransparentIfBlue(rgbaArray, index)
-      }
-    })
-    console.log("changePixels end")
-
-    // encode
-    let input = "cupcake"
+  function encodeSecretMessage(secretMessage, rgbaArray) {
     let messageIndicator = "#"
     let stringTerminator = String.fromCharCode(0)
     
-    let chars = Array.from(messageIndicator + input + stringTerminator)
+    let chars = Array.from(messageIndicator + secretMessage + stringTerminator)
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -215,37 +188,13 @@
       let secretBinaryColorGreen = sliceG1 + slice1
       let secretColorRed = convertBinaryToDecimal(secretBinaryColorRed)
       let secretColorGreen = convertBinaryToDecimal(secretBinaryColorGreen)
-      
-      console.log(c, i)
-      console.log(slice1)
-      console.log(slice2)
-      console.log("     r")
-      console.log(sliceR1)
-      console.log(sliceR2)
-      console.log("     g")
-      console.log(sliceG1)
-      console.log(sliceG2)
-      console.log("     newcolor")
-      console.log(secretBinaryColorRed)
-      console.log(secretBinaryColorGreen)
-      console.log("  scr", secretColorRed)
-      console.log("  scg", secretColorGreen)
-
+    
       rgbaArray[rIndex] = secretColorRed
       rgbaArray[gIndex] = secretColorGreen
-
-
     })
-    
-    // ^^^^^ that happened 1 month ago
+  }
 
-
-
-
-
-    // then upload to:
-    // decode
-
+  function decodeSecretMessage(rgbaArray) {
     // x 1. take r&g out of array
     // x 2. slice r&g in the middle
     // x 3. take out 4 bits of the 1st set of r&g
@@ -253,7 +202,9 @@
     // x 5. turn the binary into letters
     // x 6. redo from 3. for 2nd letter
 
-
+    let messageIndicator = "#"
+    let stringTerminator = String.fromCharCode(0)
+    
     // 1) does the first pixel contain a hash character?
     let firstR = rgbaArray[0]
     let firstG = rgbaArray[1]
@@ -283,11 +234,56 @@
       })
 
       message = message.slice(1)
-      
-      console.log("message :", message, message.length)
+
+      return message
     } else {
-      console.log("there was no secret message")
+      return ""
     }
+  }
+
+  function changePixels(rgbaArray, redFactor, greenFactor, blueFactor, transparentFactor, 
+                        redFilterSelected, greenFilterSelected, blueFilterSelected) {
+    console.log("changePixels begin", redFactor, greenFactor, blueFactor, transparentFactor)
+    rgbaArray.forEach(function(value, index) {
+      if (index % 4 == 0) {
+        rgbaArray[index] = value + redFactor
+      } else if (index % 4 == 1) {
+        rgbaArray[index] = value + greenFactor
+      } else if (index % 4 == 2) {
+        rgbaArray[index] = value + blueFactor
+      } else if (index % 4 == 3) {
+        rgbaArray[index] = value - transparentFactor
+      }
+      
+      if (redFilterSelected) {
+        makePixelTransparentIfRed(rgbaArray, index)
+      }
+      if (greenFilterSelected) {
+        makePixelTransparentIfGreen(rgbaArray, index)
+      }
+      if (blueFilterSelected) {
+        makePixelTransparentIfBlue(rgbaArray, index)
+      }
+    })
+    console.log("changePixels end")
+
+    
+    let input = "cupcake"
+    
+    encodeSecretMessage(input, rgbaArray)
+    
+    // ^^^^^ that happened 1 month ago
+
+
+
+
+
+    // then upload to:
+    // decode
+
+    let message = decodeSecretMessage(rgbaArray)
+    
+    console.log("message :", message, message.length)
   }
 
   // input: redDecimalValue
