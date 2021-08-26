@@ -345,6 +345,18 @@
 
       console.log("redfactor variable", redFactor)
 
+      // This was discussed as far back as 2008 in the WHATWG mailing list, 
+      // and they decided that a "round trip"/identity of put/get image data 
+      // is not a promise the spec is willing to demand.
+      //
+      // If you need to "save" the image data, you can't save it and keep the 
+      // same fidelity using putImageData. Workarounds by drawing the full-alpha 
+      // data to a temporary canvas and redrawing to the main canvas with a 
+      // smaller globalAlpha won't work, either.
+      //
+      // So you're out of luck. Sorry.
+      // https://stackoverflow.com/a/23501676
+      // oops!
   
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
@@ -355,7 +367,9 @@
         ctx.drawImage(img, 0, 0)
         let myImageData = ctx.getImageData(0, 0, 420, 420)
 
-        console.log("get", myImageData.data.length, myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3])
+        console.log("get", myImageData.data.length, 
+          myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
+          myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
         console.log("decoded", decodeSecretMessage(myImageData.data))
 
         let statsElement = document.querySelector("#image-stats")
@@ -365,8 +379,16 @@
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
           
-          console.log("put", myImageData.data.length, myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3])
+          console.log("put", myImageData.data.length, 
+            myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
+            myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
           ctx.putImageData(myImageData, 0, 0)
+
+          myImageData = ctx.getImageData(0, 0, 420, 420)
+          console.log("get2", myImageData.data.length, 
+          myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
+          myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
+          console.log("decoded2", decodeSecretMessage(myImageData.data))
         })
 
         // What happens is you get a ImageData object with a data attribute that 
