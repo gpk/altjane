@@ -94,7 +94,7 @@
       <div><input type="checkbox" id="redfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="greenfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="bluefilter-checkbox" onchange="drawNeeko()"></input></div>
-      <div><button onclick="resetColor()">Reset Color</button></div>
+      <div><button onclick="resetColorAndRedraw()">Reset Color</button></div>
     </td>
   </tr>
 </table>
@@ -102,7 +102,7 @@
 <div>stats: <span id="image-stats"></span></div>
 </div>
 <script>
-  function resetColor() {
+  function resetColorAndRedraw() {
     document.querySelector("#redshifter-box").value = "0"
     document.querySelector("#greenshifter-box").value = "0"
     document.querySelector("#blueshifter-box").value = "0"
@@ -410,7 +410,8 @@
     let reader = new FileReader()
     reader.onload = function() {
       let base64URL = this.result
-      drawNeeko(null, base64URL)
+      document.querySelector("#hidden-img").src = base64URL
+      resetColorAndRedraw()
     }
     reader.readAsDataURL(event.target.files[0])
   }
