@@ -94,15 +94,16 @@
       <div><input type="checkbox" id="redfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="greenfilter-checkbox" onchange="drawNeeko()"></input></div>
       <div><input type="checkbox" id="bluefilter-checkbox" onchange="drawNeeko()"></input></div>
-      <div><button onclick="resetColorAndRedraw()">Reset Color</button></div>
+      <div><button onclick="resetAndRedraw()">Reset</button></div>
     </td>
   </tr>
 </table>
+<div id="decoded-secret-message"></div>
 <div><input type="text" id="secret-message-box" oninput="drawNeeko()" size="60"></input></div>
 <div>stats: <span id="image-stats"></span></div>
 </div>
 <script>
-  function resetColorAndRedraw() {
+  function resetAndRedraw() {
     document.querySelector("#redshifter-box").value = "0"
     document.querySelector("#greenshifter-box").value = "0"
     document.querySelector("#blueshifter-box").value = "0"
@@ -111,6 +112,8 @@
     document.querySelector("#redfilter-checkbox").checked = false
     document.querySelector("#greenfilter-checkbox").checked = false
     document.querySelector("#bluefilter-checkbox").checked = false
+    
+    document.querySelector("#secret-message-box").value = ""
 
     drawNeeko()
   }
@@ -271,19 +274,8 @@
     let currentSecretMessageText = document.querySelector("#secret-message-box").value
 
     encodeSecretMessage(currentSecretMessageText, rgbaArray)
-    
-    // ^^^^^ that happened 1 month ago
 
-
-
-
-
-    // then upload to:
-    // decode
-
-    let message = decodeSecretMessage(rgbaArray)
-    
-    console.log("message :", message, message.length)
+    console.log("the decode of the encoded message is :", decodeSecretMessage(rgbaArray))
   }
 
   // input: redDecimalValue
@@ -363,6 +355,9 @@
         ctx.drawImage(img, 0, 0)
         let myImageData = ctx.getImageData(0, 0, 420, 420)
 
+        console.log("get", myImageData.data.length, myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3])
+        console.log("decoded", decodeSecretMessage(myImageData.data))
+
         let statsElement = document.querySelector("#image-stats")
         timeOps(myImageData.data.length, statsElement, function() {
           console.log("before changePixels", redFactor, greenFactor, blueFactor, transparencyFactor)
@@ -370,6 +365,7 @@
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
           
+          console.log("put", myImageData.data.length, myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3])
           ctx.putImageData(myImageData, 0, 0)
         })
 
@@ -407,7 +403,7 @@
     reader.onload = function() {
       let base64URL = this.result
       document.querySelector("#hidden-img").src = base64URL
-      resetColorAndRedraw()
+      resetAndRedraw()
     }
     reader.readAsDataURL(event.target.files[0])
   }
