@@ -301,9 +301,6 @@
     return Math.random() > 0.5
   }
 
-  function loadImage(imageByteArray) {
-
-  }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images
   function janesDraw(mode) {
@@ -351,7 +348,7 @@
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d')
 
-      var img = new Image();   // Create new img element
+      let img = new Image()
       img.onload = function() {
         console.log("finishLoading")
         ctx.drawImage(img, 0, 0)
@@ -394,19 +391,37 @@
 <div class="roundy-box">
 
 <script>
+
+  function loadImage(uint8ArrayBuffer) {
+    console.log(uint8ArrayBuffer)
+    let blob = new Blob( [ uint8ArrayBuffer ], { type: "image/jpeg" } )
+    let imageUrl = URL.createObjectURL( blob )
+    console.log(imageUrl)
+  }
+
   function uploadFile(event) {
-    let reader = new FileReader()
-    reader.onload = function() {
+    let reader1 = new FileReader()
+    reader1.onload = function() {
       let arrayBuffer = this.result
-      let arr = new Uint8Array(arrayBuffer)
-      loadImage(arr)
+      console.log("ab", arrayBuffer)
+      // loadImage(arrayBuffer)
     }
-    reader.readAsArrayBuffer(event.target.files[0])
+    reader1.readAsArrayBuffer(event.target.files[0])
+
+    let reader2 = new FileReader()
+    reader2.onload = function() {
+      let base64URL = this.result
+      console.log("b64", base64URL)
+      document.querySelector("#uploaded-img").src = base64URL
+      // set this as the img src
+    }
+    reader2.readAsDataURL(event.target.files[0])
   }
 </script>
 
 you can upload your own neeko image if you want
 <div><input type="file" id="file-upload-box"></input></div>
+<div><img id="uploaded-img"/></div>
 
 <script>
   document.querySelector("#file-upload-box").addEventListener("change", uploadFile)
