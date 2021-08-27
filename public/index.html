@@ -103,7 +103,7 @@
 <div>stats: <span id="image-stats"></span></div>
 </div>
 <script>
-  function resetAndRedraw() {
+  function resetAndRedraw(mode) {
     document.querySelector("#redshifter-box").value = "0"
     document.querySelector("#greenshifter-box").value = "0"
     document.querySelector("#blueshifter-box").value = "0"
@@ -115,7 +115,7 @@
     
     document.querySelector("#secret-message-box").value = ""
 
-    drawNeeko()
+    drawNeeko(mode)
   }
 
   function timeOps(count, statsElement, workFn) {
@@ -373,14 +373,11 @@
         console.log("decoded", decodeSecretMessage(myImageData.data))
 
         let statsElement = document.querySelector("#image-stats")
-        timeOps(myImageData.data.length, statsElement, function() {
+        timeOps(3*myImageData.data.length, statsElement, function() {
           console.log("before changePixels", redFactor, greenFactor, blueFactor, transparencyFactor)
           changePixels(myImageData.data, redFactor, greenFactor, blueFactor, transparencyFactor, 
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
-
-
-          
 
           let theFirstPixelIsOpaque = myImageData.data[3] == 255
           let startingOpaquePixelCounter = 0
@@ -395,35 +392,28 @@
             }
           })
           console.log("starting opaque pixels", startingOpaquePixelCounter, "first pixel opaque", theFirstPixelIsOpaque)
+
+          let decodedMessage = decodeSecretMessage(myImageData.data)
+          console.log("the decode of the encoded message is :", decodedMessage)
           
-          let currentSecretMessageText = document.querySelector("#secret-message-box").value
-          if (currentSecretMessageText.length > startingOpaquePixelCounter) {
-            currentSecretMessageText = currentSecretMessageText.slice(0, startingOpaquePixelCounter)
+          if (mode == "UPLOAD") {
+            console.log("upload detected")
+            document.querySelector("#secret-message-box").value = decodedMessage
+          } else {
+            let currentSecretMessageText = document.querySelector("#secret-message-box").value
+            if (currentSecretMessageText.length > startingOpaquePixelCounter) {
+              currentSecretMessageText = currentSecretMessageText.slice(0, startingOpaquePixelCounter)
+            }
+            encodeSecretMessage(currentSecretMessageText, myImageData.data)
           }
-          encodeSecretMessage(currentSecretMessageText, myImageData.data)
-
-          console.log("the decode of the encoded message is :", decodeSecretMessage(myImageData.data))
-
+          
           if (theFirstPixelIsOpaque && startingOpaquePixelCounter > 10) {
             document.querySelector("#secret-message-box").style.display = ""
           } else {
             document.querySelector("#secret-message-box").style.display = "none"
           }
           
-
-          console.log("put", myImageData.data.length, 
-            myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
-            myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
           ctx.putImageData(myImageData, 0, 0)
-
-          myImageData = ctx.getImageData(0, 0, 420, 420)
-          console.log("get2", myImageData.data.length, 
-          myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
-          myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
-          console.log("decoded2", decodeSecretMessage(myImageData.data))
-
-          
-          
         })
 
         // What happens is you get a ImageData object with a data attribute that 
@@ -460,7 +450,7 @@
     reader.onload = function() {
       let base64URL = this.result
       document.querySelector("#hidden-img").src = base64URL
-      resetAndRedraw()
+      resetAndRedraw("UPLOAD")
     }
     reader.readAsDataURL(event.target.files[0])
   }
