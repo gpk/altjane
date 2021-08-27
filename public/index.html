@@ -266,13 +266,6 @@
       }
     })
     console.log("changePixels end")
-
-  
-    let currentSecretMessageText = document.querySelector("#secret-message-box").value
-
-    encodeSecretMessage(currentSecretMessageText, rgbaArray)
-
-    console.log("the decode of the encoded message is :", decodeSecretMessage(rgbaArray))
   }
 
   // input: redDecimalValue
@@ -387,18 +380,31 @@
           console.log("after changePixels")
 
 
+          
+
           let theFirstPixelIsOpaque = myImageData.data[3] == 255
-          let opaquePixelCounter = 0
+          let startingOpaquePixelCounter = 0
+          let pixelFoundThatHasSomeTransparency = false
           myImageData.data.forEach(function(value, index) {
             if (index % 4 == 3) {
-              if (value == 255) {
-                opaquePixelCounter = opaquePixelCounter + 1
+              if (!pixelFoundThatHasSomeTransparency && value == 255) {
+                startingOpaquePixelCounter = startingOpaquePixelCounter + 1
+              } else {
+                pixelFoundThatHasSomeTransparency = true
               }
             }
           })
-          console.log("opaque pixels", opaquePixelCounter, "first pixel opaque", theFirstPixelIsOpaque)
+          console.log("starting opaque pixels", startingOpaquePixelCounter, "first pixel opaque", theFirstPixelIsOpaque)
           
-          if (theFirstPixelIsOpaque && opaquePixelCounter > 1000) {
+          let currentSecretMessageText = document.querySelector("#secret-message-box").value
+          if (currentSecretMessageText.length > startingOpaquePixelCounter) {
+            currentSecretMessageText = currentSecretMessageText.slice(0, startingOpaquePixelCounter)
+          }
+          encodeSecretMessage(currentSecretMessageText, myImageData.data)
+
+          console.log("the decode of the encoded message is :", decodeSecretMessage(myImageData.data))
+
+          if (theFirstPixelIsOpaque && startingOpaquePixelCounter > 10) {
             document.querySelector("#secret-message-box").style.display = ""
           } else {
             document.querySelector("#secret-message-box").style.display = "none"
