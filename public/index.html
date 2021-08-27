@@ -99,7 +99,7 @@
   </tr>
 </table>
 <div id="decoded-secret-message"></div>
-<div><input type="text" id="secret-message-box" oninput="drawNeeko()" size="60"></input></div>
+<div id="secret-message-area">secret message: <input type="text" id="secret-message-box" oninput="drawNeeko()" size="40"></input></div>
 <div>stats: <span id="image-stats"></span></div>
 </div>
 <script>
@@ -408,9 +408,9 @@
           }
           
           if (theFirstPixelIsOpaque && startingOpaquePixelCounter > 10) {
-            document.querySelector("#secret-message-box").style.display = ""
+            document.querySelector("#secret-message-area").style.display = ""
           } else {
-            document.querySelector("#secret-message-box").style.display = "none"
+            document.querySelector("#secret-message-area").style.display = "none"
           }
           
           ctx.putImageData(myImageData, 0, 0)
