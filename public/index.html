@@ -69,8 +69,7 @@
 </script>
 <div class="roundy-box">
 <img style="display:none" id="hidden-img" src="neeko.jpeg#foo"></canvas>
-<canvas id="tutorial" width="420" height="420"></canvas>
-
+<canvas id="neeko" width="420" height="420"></canvas>
 <table>
   <tr>
     <td style="text-align: right">
@@ -101,8 +100,21 @@
 <div id="decoded-secret-message"></div>
 <div id="secret-message-area">secret message: <input type="text" id="secret-message-box" oninput="drawNeeko()" size="40"></input></div>
 <div>stats: <span id="image-stats"></span></div>
+<button onclick="downloadPhoto()">Download Neeko</button>
 </div>
 <script>
+  function downloadPhoto() {
+    let canvas = document.querySelector("#neeko")
+    let dataURL = canvas.toDataURL()
+    let link = document.createElement("a")
+    link.href = dataURL
+    let dateTimeStr = (new Date()).toISOString().slice(0, 19).replace(/-/g, "").replace("T", "-").replace(/:/g, "")
+    link.download = "neeko-" + dateTimeStr + ".png"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   function resetAndRedraw(mode) {
     document.querySelector("#redshifter-box").value = "0"
     document.querySelector("#greenshifter-box").value = "0"
@@ -358,7 +370,7 @@
       // ... notice that in the color chart, the opaque pixel can be converted to 
       // and from each format without loss (reliably).
   
-      let canvas = document.querySelector("#tutorial")
+      let canvas = document.querySelector("#neeko")
       let ctx = canvas.getContext('2d', {premultipliedAlpha: false})
 
       let img = document.querySelector("#hidden-img")
