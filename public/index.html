@@ -358,7 +358,15 @@
       // https://stackoverflow.com/a/23501676
       // oops!
       //
-      // maybe try this https://stackoverflow.com/a/60564905
+      // Because of the lossy nature of premultiplied alpha, we can only
+      // reliably encode and decode secret message letters into opaque
+      // pixels
+      // 
+      // You can read up on premultiplied alpha here: 
+      // https://html.spec.whatwg.org/multipage/canvas.html#premultiplied-alpha-and-the-2d-rendering-context
+      //
+      // ... notice that in the color chart, the opaque pixel can be converted to 
+      // and from each format without loss (reliably).
   
       let canvas = document.querySelector("#tutorial")
       let ctx = canvas.getContext('2d', {premultipliedAlpha: false})
@@ -380,6 +388,9 @@
           changePixels(myImageData.data, redFactor, greenFactor, blueFactor, transparencyFactor, 
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
+
+
+          
 
           let theFirstPixelIsOpaque = myImageData.data[3] == 255
           let opaquePixelCounter = 0
