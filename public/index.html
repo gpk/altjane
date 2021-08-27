@@ -390,8 +390,6 @@
           console.log("after changePixels")
 
 
-          
-
           let theFirstPixelIsOpaque = myImageData.data[3] == 255
           let opaquePixelCounter = 0
           myImageData.data.forEach(function(value, index) {
@@ -402,6 +400,13 @@
             }
           })
           console.log("opaque pixels", opaquePixelCounter, "first pixel opaque", theFirstPixelIsOpaque)
+          
+          if (theFirstPixelIsOpaque && opaquePixelCounter > 1000) {
+            document.querySelector("#secret-message-box").style.display = ""
+          } else {
+            document.querySelector("#secret-message-box").style.display = "none"
+          }
+          
 
           console.log("put", myImageData.data.length, 
             myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
