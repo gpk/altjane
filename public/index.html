@@ -357,9 +357,11 @@
       // So you're out of luck. Sorry.
       // https://stackoverflow.com/a/23501676
       // oops!
+      //
+      // maybe try this https://stackoverflow.com/a/60564905
   
       let canvas = document.querySelector("#tutorial")
-      let ctx = canvas.getContext('2d')
+      let ctx = canvas.getContext('2d', {premultipliedAlpha: false})
 
       let img = document.querySelector("#hidden-img")
       img.onload = function() {
@@ -378,7 +380,18 @@
           changePixels(myImageData.data, redFactor, greenFactor, blueFactor, transparencyFactor, 
                        redFilterSelected, greenFilterSelected, blueFilterSelected)
           console.log("after changePixels")
-          
+
+          let theFirstPixelIsOpaque = myImageData.data[3] == 255
+          let opaquePixelCounter = 0
+          myImageData.data.forEach(function(value, index) {
+            if (index % 4 == 3) {
+              if (value == 255) {
+                opaquePixelCounter = opaquePixelCounter + 1
+              }
+            }
+          })
+          console.log("opaque pixels", opaquePixelCounter, "first pixel opaque", theFirstPixelIsOpaque)
+
           console.log("put", myImageData.data.length, 
             myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
             myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
@@ -389,6 +402,9 @@
           myImageData.data[0], myImageData.data[1], myImageData.data[2], myImageData.data[3],
           myImageData.data[4], myImageData.data[5], myImageData.data[6], myImageData.data[7])
           console.log("decoded2", decodeSecretMessage(myImageData.data))
+
+          
+          
         })
 
         // What happens is you get a ImageData object with a data attribute that 
