@@ -170,11 +170,11 @@
       }
   }
 
+  const MESSAGE_INDICATOR = "#"
+  const STRING_TERMINATOR = String.fromCharCode(0)
+
   function encodeSecretMessage(secretMessage, rgbaArray) {
-    let messageIndicator = "#"
-    let stringTerminator = String.fromCharCode(0)
-    
-    let chars = Array.from(messageIndicator + secretMessage + stringTerminator)
+    let chars = Array.from(MESSAGE_INDICATOR + secretMessage + STRING_TERMINATOR)
     chars.forEach(function(c, i) {
       let binary = convertDecimalToBinary(c.charCodeAt(0))
       let slice1 = binary.slice(0,3)
@@ -205,9 +205,6 @@
     // x 5. turn the binary into letters
     // x 6. redo from 3. for 2nd letter
 
-    let messageIndicator = "#"
-    let stringTerminator = String.fromCharCode(0)
-    
     // 1) does the first pixel contain a hash character?
     let firstR = rgbaArray[0]
     let firstG = rgbaArray[1]
@@ -215,7 +212,7 @@
     console.log("first letter", firstVerySecretLetter)
       
     // 2) if it does, loop through the pixels and get the message out
-    if (firstVerySecretLetter == messageIndicator) {
+    if (firstVerySecretLetter == MESSAGE_INDICATOR) {
       
       let message = ""
       let terminator = false
@@ -226,7 +223,7 @@
           let green = rgbaArray[index + 1]
           let verySecretLetter = extractLetter(red, green)
 
-          if (stringTerminator == verySecretLetter) {
+          if (STRING_TERMINATOR == verySecretLetter) {
             terminator = true
           }
 
